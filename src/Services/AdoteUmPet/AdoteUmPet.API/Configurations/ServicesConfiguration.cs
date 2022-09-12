@@ -2,6 +2,7 @@
 using AdoteUmPet.Infrastructure.Contexts;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Reflection;
 
 namespace AdoteUmPet.API.Configurations
@@ -14,7 +15,7 @@ namespace AdoteUmPet.API.Configurations
             
             services.AddDbContext<AdoteUmPetDbContext>();
 
-            services.AddMediatR(Assembly.Load("AdoteUmPet.Application"));
+            services.AddMediatR(AppDomain.CurrentDomain.Load("AdoteUmPet.Application"));
 
             return services;
         }

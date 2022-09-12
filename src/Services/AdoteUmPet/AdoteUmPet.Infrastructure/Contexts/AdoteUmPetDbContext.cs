@@ -23,11 +23,13 @@ namespace AdoteUmPet.Infrastructure.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString))
+                .UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString), 
+                    options =>  options.MigrationsAssembly("AdoteUmPet.Infrastructure"))
                 .UseSnakeCaseNamingConvention();
 
             base.OnConfiguring(optionsBuilder);
         }
+
         private void ChangeTracker_StateChanged(object sender, EntityStateChangedEventArgs e)
         {
             if (e.Entry.Entity is Entity)
