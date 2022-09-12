@@ -1,8 +1,10 @@
 ﻿using AdoteUmPet.Application.Models.InputModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace AdoteUmPet.API.Controllers
 {
@@ -22,29 +24,42 @@ namespace AdoteUmPet.API.Controllers
         /// <summary>
         /// Registra um novo usuário
         /// </summary>
-        /// <param name="registerUser"></param>
+        /// <param name="registerInput"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task<IActionResult> Register(RegisterUserInputModel registerUser)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterUserInputModel registerInput)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState.Values.SelectMany(p => p.Errors));
-
             IdentityUser user = new IdentityUser
             {
-                UserName = registerUser.Email,
-                Email = registerUser.Email,
+                UserName = registerInput.Email,
+                Email = registerInput.Email,
                 EmailConfirmed = true,
             };
 
-            IdentityResult createResult = await _userManager.CreateAsync(user, registerUser.Password);
+            IdentityResult createResult = await _userManager.CreateAsync(user, registerInput.Password);
 
             if (!createResult.Succeeded)
                 return BadRequest(createResult.Errors);
 
             await _signInManager.SignInAsync(user, false);
 
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        /// <summary>
+        /// Realiza o login do usuário
+        /// </summary>
+        /// <param name="loginInput"></param>
+        /// <returns></returns>
+        [HttpPost("login")]
+        public async Task<ActionResult> Login([FromBody] LoginUserInputModel loginInput)
+        {
+            SignInResult loginResult = await _signInManager.PasswordSignInAsync(loginInput.Email, loginInput.Password, false, false);
+
+            if (!loginResult.Succeeded)
+                return BadRequest("Invalid email or password");
+
             return Ok();
-        }   
+        }
     }
 }
