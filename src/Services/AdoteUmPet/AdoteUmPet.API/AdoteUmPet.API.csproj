@@ -22,4 +22,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AdoteUmPet.Infrastructure\AdoteUmPet.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
