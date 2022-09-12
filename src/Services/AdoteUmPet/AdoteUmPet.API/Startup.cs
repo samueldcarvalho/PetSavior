@@ -29,6 +29,7 @@ namespace AdoteUmPet.API
         {
             services.AddControllers();
             services.AddServicesConfiguration();
+            services.AddIdentityConfiguration();
 
             services.AddSwaggerGen(c =>
             {
@@ -47,6 +48,8 @@ namespace AdoteUmPet.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 
