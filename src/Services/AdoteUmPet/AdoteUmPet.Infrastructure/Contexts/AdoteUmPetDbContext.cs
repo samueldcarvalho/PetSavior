@@ -1,4 +1,5 @@
 ﻿using AdoteUmPet.Core.Domain;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
@@ -6,7 +7,7 @@ using System;
 
 namespace AdoteUmPet.Infrastructure.Contexts
 {
-    public class AdoteUmPetDbContext : DbContext
+    public class AdoteUmPetDbContext : IdentityDbContext
     {
         private readonly string _connectionString;
         public AdoteUmPetDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
