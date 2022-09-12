@@ -11,10 +11,6 @@ namespace AdoteUmPet.Core.Domain
         public int Id { get; set; }
         public DateTime AlteredAt { get; set; } = DateTime.MinValue;
         public DateTime CreatedAt { get; set; } = DateTime.MinValue;
-
-        protected Entity()
-        {
-            CreatedAt = DateTime.Now;
-        }
+        public bool Removed { get; set; } = false;
     }
 }

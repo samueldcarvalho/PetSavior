@@ -9,6 +9,9 @@ namespace AdoteUmPet.Core.Infrastructure
 {
     public interface IRepository<TEntity> where TEntity : Entity, IAggregateRoot
     {
-
+        Task<TEntity> GetById(int id);
+        Task<ICollection<TEntity>> GetAll();
+        void Add(TEntity entity);
+        void Update(TEntity entity);
     }
 }
