@@ -1,9 +1,15 @@
-﻿using AdoteUmPet.Application.Models.InputModels;
+﻿using AdoteUmPet.API.Configurations;
+using AdoteUmPet.Application.Models.InputModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
@@ -15,13 +21,16 @@ namespace AdoteUmPet.API.Controllers
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly AppSettingsModel _appSettings;
 
         public AuthController(
-            SignInManager<IdentityUser> signInManager, 
-            UserManager<IdentityUser> userManager)
+            SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            IOptions<AppSettingsModel> appSettings)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _appSettings = appSettings.Value;
         }
 
         /// <summary>
@@ -46,7 +55,7 @@ namespace AdoteUmPet.API.Controllers
 
             await _signInManager.SignInAsync(user, false);
 
-            return StatusCode(StatusCodes.Status201Created);
+            return StatusCode(StatusCodes.Status201Created, await CreateJWT(user.Email));
         }
 
         /// <summary>
@@ -62,14 +71,25 @@ namespace AdoteUmPet.API.Controllers
             if (!loginResult.Succeeded)
                 return BadRequest("Invalid email or password");
 
-            return Ok();
+            return Ok(await CreateJWT(loginInput.Email));
         }
 
-        [Authorize]
-        [HttpGet("test")]
-        public ActionResult Teste([FromQuery] string teste)
+        private async Task<string> CreateJWT(string email)
         {
-            return Ok(teste);
+            IdentityUser user = await _userManager.FindByEmailAsync(email);
+
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Issuer = _appSettings.Emitter,
+                Audience = _appSettings.AllowedHost,
+                Expires = DateTime.UtcNow.AddHours(_appSettings.ExpirationTime),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            return tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
         }
     }
 }
