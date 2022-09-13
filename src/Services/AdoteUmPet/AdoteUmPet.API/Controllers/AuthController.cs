@@ -1,4 +1,5 @@
 ﻿using AdoteUmPet.Application.Models.InputModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,9 @@ namespace AdoteUmPet.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public AuthController(
+            SignInManager<IdentityUser> signInManager, 
+            UserManager<IdentityUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -60,6 +63,13 @@ namespace AdoteUmPet.API.Controllers
                 return BadRequest("Invalid email or password");
 
             return Ok();
+        }
+
+        [Authorize]
+        [HttpGet("test")]
+        public ActionResult Teste([FromQuery] string teste)
+        {
+            return Ok(teste);
         }
     }
 }
