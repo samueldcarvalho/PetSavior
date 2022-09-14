@@ -1,4 +1,5 @@
-﻿using AdoteUmPet.Infrastructure.Contexts;
+﻿using AdoteUmPet.Domain.Users;
+using AdoteUmPet.Infrastructure.Contexts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -12,9 +13,9 @@ namespace AdoteUmPet.API.Configurations
     {
         public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDefaultIdentity<IdentityUser>()
-                    .AddRoles<IdentityRole>()
-                    .AddEntityFrameworkStores<AdoteUmPetDbContext>()
+            _ = services.AddDefaultIdentity<User>()
+                    .AddRoles<Role>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
 
             var appSettingsSection = configuration.GetSection("AppSettings");

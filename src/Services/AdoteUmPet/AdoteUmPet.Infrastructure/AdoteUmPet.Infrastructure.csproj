@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\AdoteUmPet.Core\AdoteUmPet.Core.csproj" />
+    <ProjectReference Include="..\AdoteUmPet.Domain\AdoteUmPet.Domain.csproj" />
   </ItemGroup>
 
 </Project>
