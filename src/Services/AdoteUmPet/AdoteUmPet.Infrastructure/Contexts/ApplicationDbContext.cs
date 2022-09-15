@@ -1,4 +1,7 @@
 ﻿using AdoteUmPet.Core.Domain;
+using AdoteUmPet.Domain.Ads;
+using AdoteUmPet.Domain.Favorites;
+using AdoteUmPet.Domain.Pets;
 using AdoteUmPet.Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -12,6 +15,14 @@ namespace AdoteUmPet.Infrastructure.Contexts
     public class ApplicationDbContext : IdentityDbContext<User, Role, int>
     {
         private readonly string _connectionString;
+
+        public DbSet<Ad> Ads { get; set; }
+        public DbSet<Pet> Pets { get; set; }
+        public DbSet<PetBreed> PetBreeds { get; set; }
+        public DbSet<PetVaccine> PetVaccines { get; set; }
+        public DbSet<PetTemperament> PetTemperaments { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
+
         public ApplicationDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
@@ -20,6 +31,13 @@ namespace AdoteUmPet.Infrastructure.Contexts
                 throw new ArgumentNullException("ConnectionString cannot be found. See your ENV variables.");
 
             ChangeTracker.StateChanged += ChangeTracker_StateChanged;
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
+
+            base.OnModelCreating(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

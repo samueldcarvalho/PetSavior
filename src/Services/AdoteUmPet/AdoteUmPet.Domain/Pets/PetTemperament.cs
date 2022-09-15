@@ -11,12 +11,15 @@ namespace AdoteUmPet.Domain.Pets
     {
         public string TemperamentName { get; private set; }
         public int TemperamentLevel { get; private set; }
+        public int PetId { get; private set; }
+        public Pet Pet { get; private set; }
 
         protected PetTemperament() { }
-        public PetTemperament(string temperamentName, int temperamentLevel)
+        public PetTemperament(string temperamentName, int temperamentLevel, Pet pet)
         {
             TemperamentName = temperamentName;
             TemperamentLevel = temperamentLevel;
+            Pet = pet;
         }
 
         public void ChangeTemperamentLevel(int level)
