@@ -13,7 +13,7 @@ namespace AdoteUmPet.API.Configurations
         {
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             
-            services.AddDbContext<AdoteUmPetDbContext>();
+            services.AddDbContext<ApplicationDbContext>();
 
             services.AddMediatR(AppDomain.CurrentDomain.Load("AdoteUmPet.Application"));
 

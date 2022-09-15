@@ -1,4 +1,6 @@
 ﻿using AdoteUmPet.Core.Domain;
+using AdoteUmPet.Domain.Users;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -7,15 +9,15 @@ using System;
 
 namespace AdoteUmPet.Infrastructure.Contexts
 {
-    public class AdoteUmPetDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<User, Role, int>
     {
         private readonly string _connectionString;
-        public AdoteUmPetDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
+        public ApplicationDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
 
             if (string.IsNullOrWhiteSpace(_connectionString))
-                throw new ArgumentNullException("ConnectionString to communicate with Database cannot be found. See your ENV variables.");
+                throw new ArgumentNullException("ConnectionString cannot be found. See your ENV variables.");
 
             ChangeTracker.StateChanged += ChangeTracker_StateChanged;
         }
@@ -23,8 +25,8 @@ namespace AdoteUmPet.Infrastructure.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
-                .UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString), 
-                    options =>  options.MigrationsAssembly("AdoteUmPet.Infrastructure"))
+                .UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString), options =>  options
+                .MigrationsAssembly("AdoteUmPet.Infrastructure"))
                 .UseSnakeCaseNamingConvention();
 
             base.OnConfiguring(optionsBuilder);

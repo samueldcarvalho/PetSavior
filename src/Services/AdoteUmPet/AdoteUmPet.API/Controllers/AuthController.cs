@@ -1,5 +1,6 @@
 ﻿using AdoteUmPet.API.Configurations;
 using AdoteUmPet.Application.Models.InputModels;
+using AdoteUmPet.Domain.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -19,13 +20,13 @@ namespace AdoteUmPet.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
         private readonly AppSettingsModel _appSettings;
 
         public AuthController(
-            SignInManager<IdentityUser> signInManager,
-            UserManager<IdentityUser> userManager,
+            SignInManager<User> signInManager,
+            UserManager<User> userManager,
             IOptions<AppSettingsModel> appSettings)
         {
             _signInManager = signInManager;
@@ -41,12 +42,7 @@ namespace AdoteUmPet.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserInputModel registerInput)
         {
-            IdentityUser user = new IdentityUser
-            {
-                UserName = registerInput.Email,
-                Email = registerInput.Email,
-                EmailConfirmed = true,
-            };
+            User user = new User(registerInput.Name, registerInput.Email);
 
             IdentityResult createResult = await _userManager.CreateAsync(user, registerInput.Password);
 
@@ -76,7 +72,7 @@ namespace AdoteUmPet.API.Controllers
 
         private async Task<string> CreateJWT(string email)
         {
-            IdentityUser user = await _userManager.FindByEmailAsync(email);
+            User user = await _userManager.FindByEmailAsync(email);
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
             byte[] key = Encoding.ASCII.GetBytes(_appSettings.Secret);
