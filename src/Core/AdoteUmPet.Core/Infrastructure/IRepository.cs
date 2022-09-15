@@ -9,6 +9,7 @@ namespace AdoteUmPet.Core.Infrastructure
 {
     public interface IRepository<TEntity> where TEntity : Entity, IAggregateRoot
     {
+        IUnitOfWork UnitOfWork { get; }
         Task<TEntity> GetById(int id);
         Task<List<TEntity>> GetAll();
         void Add(TEntity entity);
