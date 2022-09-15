@@ -1,5 +1,6 @@
 ﻿using AdoteUmPet.Core.Domain;
 using AdoteUmPet.Core.Infrastructure;
+using AdoteUmPet.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,13 @@ namespace AdoteUmPet.Domain.Pets
         public int BreedId { get; private set; }
         public PetBreed Breed { get; private set; }
         public int UserId { get; private set; }
+        public User User { get; private set; }
         public bool Pedigree { get; private set; }
         public ICollection<PetVaccine> Vaccines { get; private set; } = new List<PetVaccine>();
         public ICollection<PetTemperament> Temperaments { get; private set; } = new List<PetTemperament>();
 
         protected Pet() { }
-        public Pet(string name, string description, string careTip, decimal weight, int breedId, bool pedigree, int userId)
+        public Pet(string name, string description, string careTip, decimal weight, int breedId, bool pedigree, User user)
         {
             Name = name;
             Description = description;
@@ -28,7 +30,7 @@ namespace AdoteUmPet.Domain.Pets
             Weight = weight;
             BreedId = breedId;
             Pedigree = pedigree;
-            UserId = userId;
+            User = user;
         }
 
         public void ChangeName(string name)
