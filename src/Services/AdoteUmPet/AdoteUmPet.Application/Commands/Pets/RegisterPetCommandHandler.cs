@@ -16,6 +16,8 @@ namespace AdoteUmPet.Application.Commands.Pets
             if (!request.IsValid())
                 return new CommandResponse<Unit>(request.ValidationResult, Unit.Value, false);
 
+            
+
             return new CommandResponse<Unit>(request.ValidationResult, Unit.Value, true);
         }
     }

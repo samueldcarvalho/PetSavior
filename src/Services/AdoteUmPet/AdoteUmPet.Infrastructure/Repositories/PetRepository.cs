@@ -1,4 +1,5 @@
 ﻿using AdoteUmPet.Core.Infrastructure;
+using AdoteUmPet.Domain.Interfaces;
 using AdoteUmPet.Domain.Pets;
 using AdoteUmPet.Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AdoteUmPet.Infrastructure.Repositories
 {
-    public class PetRepository : IRepository<Pet>
+    public class PetRepository : IPetRepository
     {
         private readonly ApplicationDbContext _context;
         private readonly DbConnection _dbConnection;
