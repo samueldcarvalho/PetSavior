@@ -18,7 +18,7 @@ namespace AdoteUmPet.Core.CQRS.Mediator
             _mediator = mediator;
         }
 
-        public Task<CommandResponse<TResult>> SendCommand<TResult>(Command<TResult> command)
+        public Task<RequestResult<TResult>> SendCommand<TResult>(Command<TResult> command)
         {
             return _mediator.Send(command);
         }

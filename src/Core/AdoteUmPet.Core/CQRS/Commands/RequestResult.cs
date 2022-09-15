@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace AdoteUmPet.Core.CQRS.Commands
 {
-    public class CommandResponse<TResult>
+    public class RequestResult<TResult>
     {
         public ValidationResult ValidationResult { get; private set; }
         public TResult Result { get; private set; }
         public bool Success { get; private set; }
 
-        public CommandResponse(ValidationResult validationResult, TResult result, bool success)
+        public RequestResult(ValidationResult validationResult, bool success, TResult result = default)
         {
             ValidationResult = validationResult;
             Result = result;
