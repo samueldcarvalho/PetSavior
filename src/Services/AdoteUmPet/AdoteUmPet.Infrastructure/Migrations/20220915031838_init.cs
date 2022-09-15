@@ -68,6 +68,30 @@ namespace AdoteUmPet.Infrastructure.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "pet_breeds",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    group = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    article_url = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_pet_breeds", x => x.id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -188,6 +212,173 @@ namespace AdoteUmPet.Infrastructure.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.CreateTable(
+                name: "favorites",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    user_id = table.Column<int>(type: "int", nullable: false),
+                    option_id = table.Column<int>(type: "int", nullable: false),
+                    option_type = table.Column<int>(type: "int", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_favorites", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_favorites_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "pet",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    care_tip = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    weight = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    breed_id = table.Column<int>(type: "int", nullable: false),
+                    user_id = table.Column<int>(type: "int", nullable: false),
+                    pedigree = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_pet", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_pet_pet_breeds_breed_id",
+                        column: x => x.breed_id,
+                        principalTable: "pet_breeds",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "fk_pet_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "ad",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    title = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    pet_id = table.Column<int>(type: "int", nullable: false),
+                    user_id = table.Column<int>(type: "int", nullable: false),
+                    adoption_status = table.Column<int>(type: "int", nullable: false),
+                    ad_status = table.Column<int>(type: "int", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_ad", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_ad_pets_pet_id",
+                        column: x => x.pet_id,
+                        principalTable: "pet",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "fk_ad_users_user_id",
+                        column: x => x.user_id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "pet_temperaments",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    temperament_name = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    temperament_level = table.Column<int>(type: "int", nullable: false),
+                    pet_id = table.Column<int>(type: "int", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_pet_temperaments", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_pet_temperaments_pets_pet_id",
+                        column: x => x.pet_id,
+                        principalTable: "pet",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "pet_vaccines",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    doses_remaining = table.Column<int>(type: "int", nullable: false),
+                    completed = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    pet_id = table.Column<int>(type: "int", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("pk_pet_vaccines", x => x.id);
+                    table.ForeignKey(
+                        name: "fk_pet_vaccines_pets_pet_id",
+                        column: x => x.pet_id,
+                        principalTable: "pet",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_ad_adoption_status",
+                table: "ad",
+                column: "adoption_status");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_ad_pet_id",
+                table: "ad",
+                column: "pet_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_ad_user_id",
+                table: "ad",
+                column: "user_id");
+
             migrationBuilder.CreateIndex(
                 name: "ix_asp_net_role_claims_role_id",
                 table: "AspNetRoleClaims",
@@ -224,10 +415,48 @@ namespace AdoteUmPet.Infrastructure.Migrations
                 table: "AspNetUsers",
                 column: "normalized_user_name",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "ix_favorites_user_id",
+                table: "favorites",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_pet_breed_id",
+                table: "pet",
+                column: "breed_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_pet_pedigree",
+                table: "pet",
+                column: "pedigree");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_pet_user_id",
+                table: "pet",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_pet_weight",
+                table: "pet",
+                column: "weight");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_pet_temperaments_pet_id",
+                table: "pet_temperaments",
+                column: "pet_id");
+
+            migrationBuilder.CreateIndex(
+                name: "ix_pet_vaccines_pet_id",
+                table: "pet_vaccines",
+                column: "pet_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ad");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -244,7 +473,22 @@ namespace AdoteUmPet.Infrastructure.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "favorites");
+
+            migrationBuilder.DropTable(
+                name: "pet_temperaments");
+
+            migrationBuilder.DropTable(
+                name: "pet_vaccines");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "pet");
+
+            migrationBuilder.DropTable(
+                name: "pet_breeds");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
