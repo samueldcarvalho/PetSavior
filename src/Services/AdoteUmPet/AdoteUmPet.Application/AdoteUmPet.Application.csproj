@@ -12,4 +12,8 @@
     <Folder Include="Models\ViewModels\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\AdoteUmPet.Core\AdoteUmPet.Core.csproj" />
+  </ItemGroup>
+
 </Project>
