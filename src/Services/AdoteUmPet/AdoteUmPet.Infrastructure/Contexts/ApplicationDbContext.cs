@@ -4,6 +4,7 @@ using AdoteUmPet.Domain.Ads;
 using AdoteUmPet.Domain.Favorites;
 using AdoteUmPet.Domain.Pets;
 using AdoteUmPet.Domain.Users;
+using AdoteUmPet.Infrastructure.Contexts.Seeds;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -37,6 +38,8 @@ namespace AdoteUmPet.Infrastructure.Contexts
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<PetBreed>().ApplyPetBreedSeeds();
+
             builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(builder);

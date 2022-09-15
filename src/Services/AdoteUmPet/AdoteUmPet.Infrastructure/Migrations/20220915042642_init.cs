@@ -364,6 +364,11 @@ namespace AdoteUmPet.Infrastructure.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.InsertData(
+                table: "pet_breeds",
+                columns: new[] { "id", "altered_at", "article_url", "created_at", "description", "group", "name", "removed" },
+                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bonzinho demais da conta sô", "Canidae", "Vira-lata", false });
+
             migrationBuilder.CreateIndex(
                 name: "ix_ad_adoption_status",
                 table: "ad",

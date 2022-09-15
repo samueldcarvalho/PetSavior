@@ -219,6 +219,19 @@ namespace AdoteUmPet.Infrastructure.Migrations
                         .HasName("pk_pet_breeds");
 
                     b.ToTable("pet_breeds");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AlteredAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ArticleURL = "",
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Bonzinho demais da conta sô",
+                            Group = "Canidae",
+                            Name = "Vira-lata",
+                            Removed = false
+                        });
                 });
 
             modelBuilder.Entity("AdoteUmPet.Domain.Pets.PetTemperament", b =>
