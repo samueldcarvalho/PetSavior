@@ -1,5 +1,6 @@
 ﻿using AdoteUmPet.Core.Domain;
 using AdoteUmPet.Core.Infrastructure;
+using AdoteUmPet.Domain.Ads;
 using AdoteUmPet.Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace AdoteUmPet.Domain.Pets
         public bool Pedigree { get; private set; }
         public ICollection<PetVaccine> Vaccines { get; private set; } = new List<PetVaccine>();
         public ICollection<PetTemperament> Temperaments { get; private set; } = new List<PetTemperament>();
+        public ICollection<Ad> Ads { get; private set; } = new List<Ad>();
 
         protected Pet() { }
         public Pet(string name, string description, string careTip, decimal weight, int breedId, bool pedigree, User user)
