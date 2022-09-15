@@ -20,7 +20,7 @@ namespace AdoteUmPet.Domain.Pets
         public ICollection<PetTemperament> Temperaments { get; private set; } = new List<PetTemperament>();
 
         protected Pet() { }
-        public Pet(string name, string description, string careTip, decimal weight, int breedId, bool pedigree)
+        public Pet(string name, string description, string careTip, decimal weight, int breedId, bool pedigree, int userId)
         {
             Name = name;
             Description = description;
@@ -28,6 +28,7 @@ namespace AdoteUmPet.Domain.Pets
             Weight = weight;
             BreedId = breedId;
             Pedigree = pedigree;
+            UserId = userId;
         }
 
         public void ChangeName(string name)
