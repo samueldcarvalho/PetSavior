@@ -18,7 +18,7 @@ namespace AdoteUmPet.Application.Commands.Pets
         public int BreedId { get; private set; }
         public bool Pedigree { get; private set; }
 
-        public RegisterPetCommand(string name, string description, string careTip, decimal weight, int breedId, bool pedigree)
+        public RegisterPetCommand(string name, string description, string careTip, decimal weight, int breedId, bool pedigree, string userId) : base(userId)
         {
             Name = name;
             Description = description;
@@ -26,6 +26,7 @@ namespace AdoteUmPet.Application.Commands.Pets
             Weight = weight;
             BreedId = breedId;
             Pedigree = pedigree;
+            UserId = userId;
         }
         public override bool IsValid()
         {

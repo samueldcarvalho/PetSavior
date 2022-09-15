@@ -46,5 +46,10 @@ namespace AdoteUmPet.Infrastructure.Repositories
         {
             _context.Pets.Update(entity);
         }
+
+        public Task<PetBreed> FindBreedById(int id)
+        {
+            return _context.PetBreeds.FirstOrDefaultAsync(p => p.Id == id);
+        }
     }
 }

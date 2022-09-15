@@ -2,15 +2,16 @@
 using AdoteUmPet.Application.Models.InputModels;
 using AdoteUmPet.Core.CQRS.Commands;
 using AdoteUmPet.Core.CQRS.Mediator;
+using AdoteUmPet.Domain.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace AdoteUmPet.API.Controllers
 {
     [Route("/api/v1/[controller]")]
-    [Authorize]
     [ApiController()]
     public class PetController : ControllerBase
     {
@@ -27,15 +28,18 @@ namespace AdoteUmPet.API.Controllers
         /// <param name="register"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<CommandResponse<bool>>> Register([FromBody] RegisterPetInputModel register)
+        [Authorize]
+        public async Task<ActionResult<RequestResult<bool>>> Register([FromBody] RegisterPetInputModel register)
         {
-            CommandResponse<Unit> commandResponse = await _mediatorHandler
-                .SendCommand(new RegisterPetCommand(register.Name, register.Description, register.CareTip, register.Weight, register.BreedId, register.Pedigree));
+            string userId = User.Identity.Name;
 
-            if (!commandResponse.Success)
-                return BadRequest(commandResponse.ValidationResult);
+            RequestResult<Unit> requestResult = await _mediatorHandler
+                .SendCommand(new RegisterPetCommand(register.Name, register.Description, register.CareTip, register.Weight, register.BreedId, register.Pedigree, userId));
 
-            return Ok(commandResponse.ValidationResult);
+            if (!requestResult.Success)
+                return BadRequest(requestResult);
+
+            return Ok(requestResult);
         } 
     }
 }
