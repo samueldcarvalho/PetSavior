@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace AdoteUmPet.Core.Domain
         public DateTime AlteredAt { get; set; } = DateTime.MinValue;
         public DateTime CreatedAt { get; set; } = DateTime.MinValue;
         public bool Removed { get; set; } = false;
+        public IEnumerable<INotification> Notifications { get; set; }
     }
 }
