@@ -1,4 +1,5 @@
-﻿using AdoteUmPet.Core.CQRS.Commands;
+﻿using AdoteUmPet.Core.CQRS;
+using AdoteUmPet.Core.CQRS.Commands;
 using AdoteUmPet.Domain.Interfaces;
 using AdoteUmPet.Domain.Pets;
 using AdoteUmPet.Domain.Users;

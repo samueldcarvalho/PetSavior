@@ -1,12 +1,16 @@
 ﻿using AdoteUmPet.Application.Commands.Pets;
 using AdoteUmPet.Application.Models.InputModels;
-using AdoteUmPet.Core.CQRS.Commands;
+using AdoteUmPet.Application.Models.ViewModels;
+using AdoteUmPet.Application.Queries.Pets;
+using AdoteUmPet.Core.CQRS;
 using AdoteUmPet.Core.CQRS.Mediator;
 using AdoteUmPet.Domain.Users;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AdoteUmPet.API.Controllers
@@ -40,6 +44,24 @@ namespace AdoteUmPet.API.Controllers
                 return BadRequest(requestResult);
 
             return Ok(requestResult);
-        } 
+        }
+
+        /// <summary>
+        /// Get all pets with pagination
+        /// </summary>
+        /// <param name="paginationNumber"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult<RequestResult<IEnumerable<PetViewModel>>>> GetAll([FromQuery] int paginationNumber, int limit)
+        {
+            RequestResult<IEnumerable<PetViewModel>> requestResult = await _mediatorHandler
+                .SendQuery(new GetAllPetsWithPagionationQuery(paginationNumber, limit));
+
+            if (!requestResult.Success)
+                return BadRequest(requestResult);
+
+            return Ok(requestResult);
+        }
     }
 }

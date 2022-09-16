@@ -9,10 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Core\AdoteUmPet.Core\AdoteUmPet.Core.csproj" />
     <ProjectReference Include="..\AdoteUmPet.Domain\AdoteUmPet.Domain.csproj" />
   </ItemGroup>
