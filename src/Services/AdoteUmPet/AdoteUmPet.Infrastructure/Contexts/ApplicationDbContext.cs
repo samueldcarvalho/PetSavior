@@ -1,18 +1,21 @@
 ﻿using AdoteUmPet.Core.Domain;
+using AdoteUmPet.Core.Infrastructure;
 using AdoteUmPet.Domain.Ads;
 using AdoteUmPet.Domain.Favorites;
 using AdoteUmPet.Domain.Pets;
 using AdoteUmPet.Domain.Users;
+using AdoteUmPet.Infrastructure.Contexts.Seeds;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Threading.Tasks;
 
 namespace AdoteUmPet.Infrastructure.Contexts
 {
-    public class ApplicationDbContext : IdentityDbContext<User, Role, int>
+    public class ApplicationDbContext : IdentityDbContext<User, Role, int>, IUnitOfWork
     {
         private readonly string _connectionString;
 
@@ -35,6 +38,8 @@ namespace AdoteUmPet.Infrastructure.Contexts
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<PetBreed>().ApplyPetBreedSeeds();
+
             builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
             base.OnModelCreating(builder);
@@ -73,6 +78,14 @@ namespace AdoteUmPet.Infrastructure.Contexts
                         break;
                 }
             }
+        }
+
+        public async Task Commit()
+        {
+            if (!ChangeTracker.HasChanges())
+                return;
+
+            await SaveChangesAsync();
         }
     }
 }

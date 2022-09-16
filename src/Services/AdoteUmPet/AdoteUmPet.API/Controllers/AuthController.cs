@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
@@ -79,10 +80,14 @@ namespace AdoteUmPet.API.Controllers
 
             SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Name, user.Id.ToString()),
+                }),
                 Issuer = _appSettings.Emitter,
                 Audience = _appSettings.AllowedHost,
                 Expires = DateTime.UtcNow.AddHours(_appSettings.ExpirationTime),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
             };
 
             return tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));

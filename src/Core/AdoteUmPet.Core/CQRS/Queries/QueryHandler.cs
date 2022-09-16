@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation.Results;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,15 @@ using System.Threading.Tasks;
 
 namespace AdoteUmPet.Core.CQRS.Queries
 {
-    public abstract class QueryHandler<TRequest, TResult> : IRequestHandler<TRequest, QueryResponse<TResult>> where TRequest : Query<TResult>
+    public abstract class QueryHandler<TRequest, TResult> : IRequestHandler<TRequest, RequestResult<TResult>> where TRequest : Query<TResult>
     {
-        public abstract Task<QueryResponse<TResult>> Handle(TRequest request, CancellationToken cancellationToken);
+        public ValidationResult ValidationResult { get; private set; } = new ValidationResult();
+
+        public abstract Task<RequestResult<TResult>> Handle(TRequest request, CancellationToken cancellationToken);
+
+        public RequestResult<TResult> CreateRequestResult(bool success, TResult result = default)
+        {
+            return new RequestResult<TResult>(ValidationResult, success, result);
+        }
     }
 }
