@@ -11,6 +11,6 @@ namespace AdoteUmPet.Domain.Interfaces
     public interface IPetRepository : IRepository<Pet> 
     {
         Task<PetBreed> FindBreedById(int id);
-    
+        Task<List<Pet>> GetAllWithPagination(int paginationNumber, int limit);
     }
 }

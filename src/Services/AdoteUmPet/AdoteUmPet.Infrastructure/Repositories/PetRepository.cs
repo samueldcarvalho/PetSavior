@@ -51,5 +51,14 @@ namespace AdoteUmPet.Infrastructure.Repositories
         {
             return _context.PetBreeds.FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        public Task<List<Pet>> GetAllWithPagination(int paginationNumber, int limit)
+        {
+            return _context.Pets
+                .Include(p => p.Breed)
+                .Take(limit)
+                .Skip((paginationNumber - 1) * limit)
+                .ToListAsync();
+        }
     }
 }
