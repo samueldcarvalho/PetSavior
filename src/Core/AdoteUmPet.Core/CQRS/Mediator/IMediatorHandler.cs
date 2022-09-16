@@ -7,6 +7,6 @@ namespace AdoteUmPet.Core.CQRS.Mediator
     public interface IMediatorHandler
     {
         Task<RequestResult<TResult>> SendCommand<TResult>(Command<TResult> command);
-        Task<QueryResponse<TResult>> SendQuery<TResult>(Query<TResult> query);
+        Task<RequestResult<TResult>> SendQuery<TResult>(Query<TResult> query);
     }
 }

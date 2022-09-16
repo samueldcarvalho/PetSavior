@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdoteUmPet.Core.CQRS.Commands
+namespace AdoteUmPet.Core.CQRS
 {
     public class RequestResult<TResult>
     {

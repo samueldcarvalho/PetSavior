@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace AdoteUmPet.Core.CQRS.Queries
 {
-    public abstract class Query<TResult> : IRequest<QueryResponse<TResult>> { }
+    public abstract class Query<TResult> : IRequest<RequestResult<TResult>> { }
 }

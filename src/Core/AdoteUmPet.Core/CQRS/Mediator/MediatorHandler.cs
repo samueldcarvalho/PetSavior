@@ -23,7 +23,7 @@ namespace AdoteUmPet.Core.CQRS.Mediator
             return _mediator.Send(command);
         }
 
-        public Task<QueryResponse<TResult>> SendQuery<TResult>(Query<TResult> query)
+        public Task<RequestResult<TResult>> SendQuery<TResult>(Query<TResult> query)
         {
             return _mediator.Send(query);
         }
