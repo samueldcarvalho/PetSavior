@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\AdoteUmPet.Core\AdoteUmPet.Core.csproj" />
-    <ProjectReference Include="..\AdoteUmPet.Domain\AdoteUmPet.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Core\PetSavior.Core\PetSavior.Core.csproj" />
+    <ProjectReference Include="..\PetSavior.Domain\PetSavior.Domain.csproj" />
   </ItemGroup>
 
 </Project>

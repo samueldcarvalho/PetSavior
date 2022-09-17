@@ -18,7 +18,7 @@ namespace AdoteUmPet.API.Configurations
             
             services.AddDbContext<ApplicationDbContext>();
 
-            services.AddMediatR(AppDomain.CurrentDomain.Load("AdoteUmPet.Application"));
+            services.AddMediatR(AppDomain.CurrentDomain.Load("PetSavior.Application"));
 
             return services;
         }

@@ -25,9 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AdoteUmPet.Application\AdoteUmPet.Application.csproj" />
-    <ProjectReference Include="..\AdoteUmPet.Domain\AdoteUmPet.Domain.csproj" />
-    <ProjectReference Include="..\AdoteUmPet.Infrastructure\AdoteUmPet.Infrastructure.csproj" />
+    <ProjectReference Include="..\PetSavior.Application\PetSavior.Application.csproj" />
+    <ProjectReference Include="..\PetSavior.Domain\PetSavior.Domain.csproj" />
+    <ProjectReference Include="..\PetSavior.Infrastructure\PetSavior.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
