@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/0.5.26-alpha">
   <PropertyGroup Label="Globals">
-    <ProjectGuid>f5cc33c6-9663-41fb-8bab-15ad4d1b12b8</ProjectGuid>
+    <ProjectGuid>97850465-b0c9-4b8b-9d1f-03947bfed32a</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
     <StartupCommand>npm start</StartupCommand>
