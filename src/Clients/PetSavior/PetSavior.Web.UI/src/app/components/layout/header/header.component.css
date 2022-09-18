@@ -1,0 +1,22 @@
+div.header-main{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-inline: 25px;
+  padding-block: 5px;
+  background-color: var(--color-primary-main);
+}
+
+div.header-main *{
+  color: #FFF;
+  user-select: none;
+}
+
+header nav a {
+  margin-inline: 5px;
+}
+
+h1 {
+  font-family: Satisfy;
+}
