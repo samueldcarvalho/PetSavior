@@ -1,12 +1,22 @@
 div.header-main{
+  position: fixed;
+  z-index: 1;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   padding-inline: 55px;
-  padding-block: 5px;
-  background-color: var(--color-primary-main);
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+  padding-block: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+
+  background: linear-gradient(0, #ffb727, var(--color-primary-main));
+}
+
+h1 {
+  font-family: Satisfy;
+  cursor: pointer;
+  font-size: 32px;
 }
 
 div.header-main *{
@@ -14,14 +24,22 @@ div.header-main *{
   user-select: none;
 }
 
+header nav {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 header nav a {
+  white-space: nowrap;
   padding-inline: 25px;
   font-size: 14px;
   font-weight: bolder;
+  text-align: center;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-h1 {
-  font-family: Satisfy;
+header nav a:hover{
+  color: var(--color-primary-darker);
 }
 
 
