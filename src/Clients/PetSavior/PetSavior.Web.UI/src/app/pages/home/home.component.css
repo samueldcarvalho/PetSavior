@@ -1,4 +1,4 @@
-div.carrousel-container {
+section.carrousel-container {
   position: relative;
 }
 
@@ -6,13 +6,23 @@ div.carrousel {
   position: relative;
   width: 100vw;
   height: 450px;
+}
+
+div.carrousel::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   background-position: 5px;
   background-image: url(../../../assets/dogs-02.jpg);
   background-size: cover;
   background-position-y: 50%;
   background-position-x: 0;
   background-repeat: no-repeat;
-  backdrop-filter: grayscale(100%) brightness(100%);
+  z-index: -1;
+  filter: grayscale(75%) brightness(70%);
 }
 
 div.backdrop{
@@ -24,9 +34,82 @@ div.backdrop{
 }
 
 div.details{
-  padding-top: 50px;
+  padding-top: 85px;
 }
 
 div.details * {
   color: white;
 }
+
+div.details div {
+  height: 350px;
+  width: 100%;
+}
+
+
+div.content-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+div.content-container h2 {
+  user-select: none;
+  font-weight: bolder;
+  font-size: 28px;
+  color: rgb(231, 231, 231);
+  text-align: center;
+}
+
+div.content-container-buttons{
+  height: 75px !important;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+div.content-container-buttons button{
+  margin-inline: 10px;
+}
+
+button.button-special{
+  border: none;
+  background-color: transparent;
+  border: solid 2px white;
+  padding: 8px 17px;
+  border-radius: 24px;
+  font-weight: bold;
+  font-size: 14px;
+    transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+}
+
+button.button-main {
+  border: none;
+  background-color: var(--color-primary-main);
+  border: solid 2px var(--color-primary-main);
+  padding: 8px 17px;
+  border-radius: 24px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+div.content-container-buttons button.button-main{
+  color: black;
+}
+
+button.button-main:hover{
+  background-color: transparent;
+}
+
+div.content-container-buttons button.button-main:hover{
+color: white;
+}
+
+button.button-special:hover{
+    border: solid 2px var(--color-primary-main);
+}
+

@@ -1,19 +1,24 @@
 div.header-main{
   position: fixed;
   z-index: 1;
+  padding-block: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(0, #ffb727, var(--color-primary-main));
+}
+
+div.header-main-content{
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding-inline: 55px;
-  padding-block: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
 
-  background: linear-gradient(0, #ffb727, var(--color-primary-main));
+h1,div.header-main-end{
+  width: 200px;
 }
 
 h1 {
+  padding-top: 10px;
   font-family: Satisfy;
   cursor: pointer;
   font-size: 32px;
@@ -39,9 +44,13 @@ header nav a {
 }
 
 header nav a:hover{
-  color: var(--color-primary-darker);
+  color: black;
 }
 
+div.header-main-end {
+  display: flex;
+  justify-content: flex-end;
+}
 
 div.header-main-end button{
   background-color: white;
