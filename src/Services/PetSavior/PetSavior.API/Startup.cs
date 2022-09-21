@@ -31,6 +31,14 @@ namespace AdoteUmPet.API
             services.AddServicesConfiguration();
             services.AddIdentityConfiguration(Configuration);
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200", "http://localhost", "http://localhost:3000");
+                });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AdoteUmPet.API", Version = "v1" });
@@ -50,6 +58,8 @@ namespace AdoteUmPet.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("default");
 
             app.UseAuthentication();
             app.UseAuthorization();
