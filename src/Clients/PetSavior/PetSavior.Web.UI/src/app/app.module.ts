@@ -1,3 +1,4 @@
+import { PetService } from './services/pets/pet.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,7 +17,7 @@ import { PetCardComponent } from './components/pets/pet-card/pet-card.component'
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [PetService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
