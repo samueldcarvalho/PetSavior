@@ -49,7 +49,7 @@ namespace AdoteUmPet.Infrastructure.Contexts
         {
             optionsBuilder
                 .UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString), options =>  options
-                .MigrationsAssembly("AdoteUmPet.Infrastructure"))
+                .MigrationsAssembly("PetSavior.Infrastructure"))
                 .UseSnakeCaseNamingConvention();
 
             base.OnConfiguring(optionsBuilder);

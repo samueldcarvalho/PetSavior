@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AdoteUmPet.Infrastructure.Migrations
+namespace PetSavior.Infrastructure.Migrations
 {
     public partial class init : Migration
     {

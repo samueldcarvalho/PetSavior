@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace AdoteUmPet.Infrastructure.Migrations
+namespace PetSavior.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220915042642_init")]
+    [Migration("20220921014949_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
