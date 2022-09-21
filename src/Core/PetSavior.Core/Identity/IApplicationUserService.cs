@@ -1,7 +1,10 @@
-﻿namespace PetSavior.Core.Identity
+﻿using System.Threading.Tasks;
+
+namespace PetSavior.Core.Identity
 {
-    public interface IApplicationUserService
+    public interface IApplicationUserService<TUser> where TUser : class
     {
+        Task<TUser> GetUser();
         int GetUserId();
     }
 }
