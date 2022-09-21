@@ -16,6 +16,7 @@ namespace AdoteUmPet.Application.Models.ViewModels
         public PetBreedViewModel Breed { get; set; }
         public int UserId { get; set; }
         public bool Pedigree { get; set; }
+        public string Sex { get; set; }
         public IEnumerable<PetVaccineViewModel> Vaccines { get; set; }
         public IEnumerable<PetTemperamentViewModel> Temperaments { get; set; } 
     }

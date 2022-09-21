@@ -17,14 +17,14 @@ namespace AdoteUmPet.Infrastructure.Contexts
 {
     public class ApplicationDbContext : IdentityDbContext<User, Role, int>, IUnitOfWork
     {
-        private readonly string _connectionString;
-
         public DbSet<Ad> Ads { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<PetBreed> PetBreeds { get; set; }
         public DbSet<PetVaccine> PetVaccines { get; set; }
         public DbSet<PetTemperament> PetTemperaments { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
+
+        private readonly string _connectionString;
 
         public ApplicationDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
         {

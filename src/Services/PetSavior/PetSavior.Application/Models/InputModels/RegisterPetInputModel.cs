@@ -14,5 +14,6 @@ namespace AdoteUmPet.Application.Models.InputModels
         public decimal Weight { get; set; }
         public int BreedId { get; set; }
         public bool Pedigree { get;  set; }
+        public int Sex { get; set; }
     }
 }

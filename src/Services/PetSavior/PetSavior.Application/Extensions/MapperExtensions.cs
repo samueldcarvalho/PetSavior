@@ -20,6 +20,7 @@ namespace AdoteUmPet.Application.Extensions
                 Pedigree = pet.Pedigree,
                 UserId = pet.UserId,
                 Weight = pet.Weight,
+                Sex = Enum.GetName(pet.Sex),
                 Breed = pet.Breed.ToViewModel(),
                 Temperaments = pet.Temperaments.Select(t => t.ToViewModel()),
                 Vaccines = pet.Vaccines.Select(v => v.ToViewModel())

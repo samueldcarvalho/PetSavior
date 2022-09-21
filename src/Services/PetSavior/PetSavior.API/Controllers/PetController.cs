@@ -35,10 +35,8 @@ namespace AdoteUmPet.API.Controllers
         [Authorize]
         public async Task<ActionResult<RequestResult<bool>>> Register([FromBody] RegisterPetInputModel register)
         {
-            string userId = User.Identity.Name;
-
             RequestResult<Unit> requestResult = await _mediatorHandler
-                .SendCommand(new RegisterPetCommand(register.Name, register.Description, register.CareTip, register.Weight, register.BreedId, register.Pedigree, userId));
+                .SendCommand(new RegisterPetCommand(register.Name, register.Description, register.CareTip, register.Weight, register.BreedId, register.Sex, register.Pedigree));
 
             if (!requestResult.Success)
                 return BadRequest(requestResult);

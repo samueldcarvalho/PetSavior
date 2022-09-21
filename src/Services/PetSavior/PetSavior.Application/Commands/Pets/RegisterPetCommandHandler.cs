@@ -5,6 +5,9 @@ using AdoteUmPet.Domain.Pets;
 using AdoteUmPet.Domain.Users;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using PetSavior.Core.Identity;
+using PetSavior.Domain.Pets.Enums;
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,12 +17,12 @@ namespace AdoteUmPet.Application.Commands.Pets
     public class RegisterPetCommandHandler : CommandHandler<RegisterPetCommand, Unit>
     {
         private readonly IPetRepository _petRepository;
-        private readonly UserManager<User> _userManager;
+        private readonly IApplicationUserService<User> _applicationUserService;
 
-        public RegisterPetCommandHandler(IPetRepository petRepository, UserManager<User> userManager)
+        public RegisterPetCommandHandler(IPetRepository petRepository, UserManager<User> userManager, IApplicationUserService<User> applicationUserService)
         {
             _petRepository = petRepository;
-            _userManager = userManager;
+            _applicationUserService = applicationUserService;
         }
 
         public override async Task<RequestResult<Unit>> Handle(RegisterPetCommand request, CancellationToken cancellationToken)
@@ -35,15 +38,17 @@ namespace AdoteUmPet.Application.Commands.Pets
                 return CreateRequestResult(false);
             }
 
-            User user = await _userManager.FindByIdAsync(request.UserId);
+            User user = await _applicationUserService.GetUser();
 
-            if(user == null)
+            if (user == null)
             {
                 AddError("User cannot be found");
                 return CreateRequestResult(false);
             }
 
-            Pet pet = new Pet(request.Name, request.Description, request.CareTip, request.Weight, breed.Id, request.Pedigree, user);
+            SexEnum sex = (SexEnum)request.Sex;
+
+            Pet pet = new(request.Name, request.Description, request.CareTip, request.Weight, breed.Id, request.Pedigree, sex, user.Id);
 
             _petRepository.Add(pet);
 
