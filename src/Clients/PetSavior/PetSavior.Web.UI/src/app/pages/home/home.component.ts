@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Pet } from 'src/app/models/pet.model';
+import { PetService } from 'src/app/services/pets/pet.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  private _pets : Array<Pet> = new Array<Pet>();
 
-  constructor() { }
+  constructor(private petService : PetService) { }
 
   ngOnInit(): void {
+    this.petService.obterPets().subscribe({
+      next: (pets) => {
+        this._pets = pets;
+        console.log(pets);
+      }
+    });
   }
-
 }

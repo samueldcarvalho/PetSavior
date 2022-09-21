@@ -1,9 +1,12 @@
 ﻿using AdoteUmPet.Core.CQRS.Mediator;
 using AdoteUmPet.Domain.Interfaces;
+using AdoteUmPet.Domain.Users;
 using AdoteUmPet.Infrastructure.Contexts;
 using AdoteUmPet.Infrastructure.Repositories;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using PetSavior.Core.Identity;
 using System;
 using System.Reflection;
 
@@ -15,10 +18,14 @@ namespace AdoteUmPet.API.Configurations
         {
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IPetRepository, PetRepository>();
-            
+
+            services.AddScoped<IApplicationUserService<User>, ApplicationUserService<User>>();
+
             services.AddDbContext<ApplicationDbContext>();
 
             services.AddMediatR(AppDomain.CurrentDomain.Load("PetSavior.Application"));
+
+            services.AddHttpContextAccessor();
 
             return services;
         }

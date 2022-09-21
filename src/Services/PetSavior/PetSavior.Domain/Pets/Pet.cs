@@ -2,6 +2,7 @@
 using AdoteUmPet.Core.Infrastructure;
 using AdoteUmPet.Domain.Ads;
 using AdoteUmPet.Domain.Users;
+using PetSavior.Domain.Pets.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace AdoteUmPet.Domain.Pets
         public decimal Weight { get; private set; }
         public int BreedId { get; private set; }
         public PetBreed Breed { get; private set; }
+        public SexEnum Sex { get; private set; }
         public int UserId { get; private set; }
         public User User { get; private set; }
         public bool Pedigree { get; private set; }
@@ -24,7 +26,7 @@ namespace AdoteUmPet.Domain.Pets
         public ICollection<Ad> Ads { get; private set; } = new List<Ad>();
 
         protected Pet() { }
-        public Pet(string name, string description, string careTip, decimal weight, int breedId, bool pedigree, User user)
+        public Pet(string name, string description, string careTip, decimal weight, int breedId, bool pedigree, SexEnum sex, int userId)
         {
             Name = name;
             Description = description;
@@ -32,7 +34,8 @@ namespace AdoteUmPet.Domain.Pets
             Weight = weight;
             BreedId = breedId;
             Pedigree = pedigree;
-            User = user;
+            UserId = userId;
+            Sex = sex;
         }
 
         public void ChangeName(string name)
