@@ -9,6 +9,9 @@
 
   --color-bg-01: #FFF;
   --color-bg-02: #F2f2f2;
+
+  --outside-border-radius: 24px;
+  --inside-border-radius: 12px;
 }
 
 *{
@@ -25,4 +28,13 @@ a{
 
 body{
   overflow-x: hidden;
+  background-color: var(--color-bg-02);
+}
+
+
+.card {
+  background-color: var(--color-bg-01);
+  border-radius: var(--outside-border-radius);
+  box-shadow: 0 12px 15px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
