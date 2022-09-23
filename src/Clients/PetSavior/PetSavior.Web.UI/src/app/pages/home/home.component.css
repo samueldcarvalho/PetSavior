@@ -1,3 +1,11 @@
+section{
+  margin-bottom: 24px;
+}
+
+section:last-child{
+  margin-bottom: 0;
+}
+
 section.carrousel-container {
   position: relative;
 }
@@ -113,3 +121,54 @@ button.button-special:hover{
     border: solid 2px var(--color-primary-main);
 }
 
+div.card-pet-container{
+  max-width: 300px;
+  height: 400px;
+  box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+  margin-bottom: 24px;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+div.card-pet-container:hover{
+  cursor: pointer;
+  box-shadow: 0 12px 24px 2px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+div.card-pet-container:hover > div.card-pet-header{
+  transform: scale(103%) translateY(-7px);
+  filter: brightness(110%);
+}
+
+div.card-pet-header{
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 280px;
+  position: relative;
+  filter: brightness(90%);
+  transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+div.card-pet-body{
+  padding-inline: 25px;
+  padding-block: 12px 20px;
+}
+
+div.card-pet-body .card-pet-body-title h2{
+  margin: 0;
+  font-size: 28px;
+  font-weight: bolder;
+}
+
+div.card-pet-body .card-pet-body-title p {
+  font-size: 14px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+
+div.card-pet-body .card-pet-body-description p{
+  font-weight: 500;
+  margin: 0;
+}
