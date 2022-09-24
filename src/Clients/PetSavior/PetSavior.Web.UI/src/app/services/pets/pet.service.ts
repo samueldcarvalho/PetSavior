@@ -16,7 +16,8 @@ export class PetService {
       params: {
         paginationNumber,
         limit
-      }
+      },
+      withCredentials: true
     });
   }
 }

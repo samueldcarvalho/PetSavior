@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PetSavior.API.Configurations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,19 +30,21 @@ namespace AdoteUmPet.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200", "localhost:4200", "localhost")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials();
+                });
+            });
             services.AddControllers();
             services.AddServicesConfiguration();
             services.AddIdentityConfiguration(Configuration);
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("default", policy =>
-                {
-                    policy.WithOrigins("http://localhost:4200", "http://localhost", "http://localhost:3000");
-                });
-            });
-
-            }
+            services.AddSwaggerConfiguration();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -57,7 +60,7 @@ namespace AdoteUmPet.API
 
             app.UseRouting();
 
-            app.UseCors("default");
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();
