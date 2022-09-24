@@ -8,15 +8,15 @@ import { PetService } from 'src/app/services/pets/pet.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  private _pets : Array<Pet> = new Array<Pet>();
+  public pets : Array<Pet> = new Array<Pet>();
 
   constructor(private petService : PetService) { }
 
   ngOnInit(): void {
     this.petService.getPets(1, 5).subscribe({
       next: (response) => {
-        this._pets = response.result;
-        console.log(response);
+        this.pets = response.result;
+        console.log(this.pets)
       },
     });
   }
