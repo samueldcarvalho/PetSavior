@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
       next: (pets) => {
         this._pets = pets;
         console.log(pets);
+        console.log(pets);
       }
     });
   }
