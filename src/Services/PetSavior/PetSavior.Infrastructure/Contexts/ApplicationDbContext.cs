@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
+using PetSavior.Infrastructure.Extensions;
 using System;
 using System.Threading.Tasks;
 
@@ -39,6 +40,8 @@ namespace AdoteUmPet.Infrastructure.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<PetBreed>().ApplyPetBreedSeeds();
+
+            builder.AddDefaultColumnConfiguration();
 
             builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
 
