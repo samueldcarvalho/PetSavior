@@ -51,7 +51,7 @@ namespace AdoteUmPet.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<RequestResult<IEnumerable<PetViewModel>>>> GetAll([FromQuery] int paginationNumber, int limit)
+        public async Task<ActionResult<RequestResult<IEnumerable<PetViewModel>>>> GetAll(int paginationNumber, int limit)
         {
             RequestResult<IEnumerable<PetViewModel>> requestResult = await _mediatorHandler
                 .SendQuery(new GetAllPetsWithPagionationQuery(paginationNumber, limit));
