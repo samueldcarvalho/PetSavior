@@ -13,4 +13,5 @@ export interface Pet {
   pedigree: boolean;
   vaccines: Array<PetVaccine>;
   temperament: Array<PetTemperament>;
+  sex: string;
 }

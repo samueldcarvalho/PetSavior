@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Pet } from 'src/app/models/pet.model';
 
 @Component({
   selector: 'app-pet-card',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./pet-card.component.css']
 })
 export class PetCardComponent implements OnInit {
+  @Input()
+  public pet: Pet | undefined;
 
   constructor() { }
 

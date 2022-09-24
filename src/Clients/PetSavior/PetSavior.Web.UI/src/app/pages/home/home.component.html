@@ -19,7 +19,7 @@
 <section class="pets-home">
   <div class="container">
     <div class="row">
-      <app-pet-card></app-pet-card>
+      <app-pet-card *ngFor="let pet of pets" [pet]="pet"></app-pet-card>
     </div>
   </div>
 </section>
