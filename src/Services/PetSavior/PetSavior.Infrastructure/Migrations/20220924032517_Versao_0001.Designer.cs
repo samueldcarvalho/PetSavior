@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace PetSavior.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220924010853_Version_0001")]
-    partial class Version_0001
+    [Migration("20220924032517_Versao_0001")]
+    partial class Versao_0001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,15 +35,17 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("adoption_status");
 
                     b.Property<DateTime>("AlteredAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("altered_at");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("created_at");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("description");
 
                     b.Property<int>("PetId")
@@ -55,7 +57,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("removed");
 
                     b.Property<string>("Title")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("title");
 
                     b.Property<int>("UserId")
@@ -85,11 +87,13 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("AlteredAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("altered_at");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("created_at");
 
                     b.Property<int>("OptionId")
@@ -125,7 +129,8 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("AlteredAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("altered_at");
 
                     b.Property<int>("BreedId")
@@ -133,19 +138,20 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("breed_id");
 
                     b.Property<string>("CareTip")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("care_tip");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("created_at");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("description");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("name");
 
                     b.Property<bool>("Pedigree")
@@ -165,7 +171,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("user_id");
 
                     b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(65,30)")
+                        .HasColumnType("decimal(10,4)")
                         .HasColumnName("weight");
 
                     b.HasKey("Id")
@@ -194,27 +200,29 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("AlteredAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("altered_at");
 
                     b.Property<string>("ArticleURL")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("article_url");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("created_at");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("description");
 
                     b.Property<string>("Group")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("group");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("name");
 
                     b.Property<bool>("Removed")
@@ -248,11 +256,13 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("AlteredAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("altered_at");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("created_at");
 
                     b.Property<int>("PetId")
@@ -268,7 +278,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("temperament_level");
 
                     b.Property<string>("TemperamentName")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("temperament_name");
 
                     b.HasKey("Id")
@@ -288,7 +298,8 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("AlteredAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("altered_at");
 
                     b.Property<bool>("Completed")
@@ -296,11 +307,12 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("completed");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime(6)")
+                        .HasPrecision(0)
+                        .HasColumnType("datetime(0)")
                         .HasColumnName("created_at");
 
                     b.Property<string>("Description")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("description");
 
                     b.Property<int>("DosesRemaining")
@@ -333,7 +345,7 @@ namespace PetSavior.Infrastructure.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("concurrency_stamp");
 
                     b.Property<string>("Name")
@@ -369,7 +381,7 @@ namespace PetSavior.Infrastructure.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("concurrency_stamp");
 
                     b.Property<string>("Email")
@@ -390,7 +402,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("lockout_end");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("name");
 
                     b.Property<string>("NormalizedEmail")
@@ -404,11 +416,11 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("normalized_user_name");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("password_hash");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("phone_number");
 
                     b.Property<bool>("PhoneNumberConfirmed")
@@ -416,7 +428,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("phone_number_confirmed");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("security_stamp");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -449,11 +461,11 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("claim_type");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("claim_value");
 
                     b.Property<int>("RoleId")
@@ -477,11 +489,11 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("claim_type");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("claim_value");
 
                     b.Property<int>("UserId")
@@ -510,7 +522,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("provider_key");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("provider_display_name");
 
                     b.Property<int>("UserId")
@@ -562,7 +574,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .HasColumnName("name");
 
                     b.Property<string>("Value")
-                        .HasColumnType("longtext")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("value");
 
                     b.HasKey("UserId", "LoginProvider", "Name")
