@@ -13,12 +13,12 @@ export class HomeComponent implements OnInit {
   constructor(private petService : PetService) { }
 
   ngOnInit(): void {
-    this.petService.obterPets().subscribe({
+    this.petService.getPets(1, 5).subscribe({
       next: (pets) => {
         this._pets = pets;
         console.log(pets);
         console.log(pets);
-      }
+      },
     });
   }
 }

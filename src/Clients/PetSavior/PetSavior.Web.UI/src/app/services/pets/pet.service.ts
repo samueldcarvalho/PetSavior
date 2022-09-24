@@ -11,7 +11,12 @@ export class PetService {
 
   constructor(private http: HttpClient) { }
 
-  obterPets() : Observable<Array<Pet>>{
-    return this.http.get<Array<Pet>>(`${this.ApiBaseURL}/Pet`);
+  getPets(paginationNumber: number, limit: number) : Observable<Array<Pet>>{
+    return this.http.get<Array<Pet>>(`${this.ApiBaseURL}/Pet`, {
+      params: {
+        paginationNumber,
+        limit
+      }
+    });
   }
 }
