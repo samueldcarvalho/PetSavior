@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetSavior.Infrastructure.Migrations
 {
-    public partial class Version_0001 : Migration
+    public partial class Versao_0001 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,7 +21,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     normalized_name = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    concurrency_stamp = table.Column<string>(type: "longtext", nullable: true)
+                    concurrency_stamp = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -36,7 +36,7 @@ namespace PetSavior.Infrastructure.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: true)
+                    name = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     user_name = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
@@ -47,13 +47,13 @@ namespace PetSavior.Infrastructure.Migrations
                     normalized_email = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     email_confirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    password_hash = table.Column<string>(type: "longtext", nullable: true)
+                    password_hash = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    security_stamp = table.Column<string>(type: "longtext", nullable: true)
+                    security_stamp = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    concurrency_stamp = table.Column<string>(type: "longtext", nullable: true)
+                    concurrency_stamp = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    phone_number = table.Column<string>(type: "longtext", nullable: true)
+                    phone_number = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     phone_number_confirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     two_factor_enabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
@@ -73,16 +73,16 @@ namespace PetSavior.Infrastructure.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: true)
+                    name = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    description = table.Column<string>(type: "longtext", nullable: true)
+                    description = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    group = table.Column<string>(type: "longtext", nullable: true)
+                    group = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    article_url = table.Column<string>(type: "longtext", nullable: true)
+                    article_url = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
                     removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
@@ -98,9 +98,9 @@ namespace PetSavior.Infrastructure.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     role_id = table.Column<int>(type: "int", nullable: false),
-                    claim_type = table.Column<string>(type: "longtext", nullable: true)
+                    claim_type = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    claim_value = table.Column<string>(type: "longtext", nullable: true)
+                    claim_value = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -122,9 +122,9 @@ namespace PetSavior.Infrastructure.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     user_id = table.Column<int>(type: "int", nullable: false),
-                    claim_type = table.Column<string>(type: "longtext", nullable: true)
+                    claim_type = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    claim_value = table.Column<string>(type: "longtext", nullable: true)
+                    claim_value = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -147,7 +147,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     provider_key = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    provider_display_name = table.Column<string>(type: "longtext", nullable: true)
+                    provider_display_name = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     user_id = table.Column<int>(type: "int", nullable: false)
                 },
@@ -197,7 +197,7 @@ namespace PetSavior.Infrastructure.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     name = table.Column<string>(type: "varchar(128)", maxLength: 128, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    value = table.Column<string>(type: "longtext", nullable: true)
+                    value = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -221,8 +221,8 @@ namespace PetSavior.Infrastructure.Migrations
                     user_id = table.Column<int>(type: "int", nullable: false),
                     option_id = table.Column<int>(type: "int", nullable: false),
                     option_type = table.Column<int>(type: "int", nullable: false),
-                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
                     removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
@@ -243,19 +243,19 @@ namespace PetSavior.Infrastructure.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    name = table.Column<string>(type: "longtext", nullable: true)
+                    name = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    description = table.Column<string>(type: "longtext", nullable: true)
+                    description = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    care_tip = table.Column<string>(type: "longtext", nullable: true)
+                    care_tip = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    weight = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    weight = table.Column<decimal>(type: "decimal(10,4)", nullable: false),
                     breed_id = table.Column<int>(type: "int", nullable: false),
                     sex = table.Column<int>(type: "int", nullable: false),
                     user_id = table.Column<int>(type: "int", nullable: false),
                     pedigree = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
                     removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
@@ -282,16 +282,16 @@ namespace PetSavior.Infrastructure.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    title = table.Column<string>(type: "longtext", nullable: true)
+                    title = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    description = table.Column<string>(type: "longtext", nullable: true)
+                    description = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     pet_id = table.Column<int>(type: "int", nullable: false),
                     user_id = table.Column<int>(type: "int", nullable: false),
                     adoption_status = table.Column<int>(type: "int", nullable: false),
                     ad_status = table.Column<int>(type: "int", nullable: false),
-                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
                     removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
@@ -318,12 +318,12 @@ namespace PetSavior.Infrastructure.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    temperament_name = table.Column<string>(type: "longtext", nullable: true)
+                    temperament_name = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     temperament_level = table.Column<int>(type: "int", nullable: false),
                     pet_id = table.Column<int>(type: "int", nullable: false),
-                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
                     removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
@@ -344,13 +344,13 @@ namespace PetSavior.Infrastructure.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    description = table.Column<string>(type: "longtext", nullable: true)
+                    description = table.Column<string>(type: "varchar(100)", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     doses_remaining = table.Column<int>(type: "int", nullable: false),
                     completed = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     pet_id = table.Column<int>(type: "int", nullable: false),
-                    altered_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    created_at = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    altered_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
+                    created_at = table.Column<DateTime>(type: "datetime(0)", precision: 0, nullable: false),
                     removed = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>

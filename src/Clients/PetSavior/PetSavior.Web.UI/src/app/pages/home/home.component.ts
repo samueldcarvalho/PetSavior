@@ -14,8 +14,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.petService.getPets(1, 5).subscribe({
-      next: (pets) => {
-        this._pets = pets;
+      next: (response) => {
+        this._pets = response.result;
+        console.log(response);
       },
     });
   }

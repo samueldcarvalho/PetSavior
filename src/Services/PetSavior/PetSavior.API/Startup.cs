@@ -34,10 +34,9 @@ namespace AdoteUmPet.API
             {
                 options.AddPolicy("CorsPolicy", builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200", "localhost:4200", "localhost")
+                    builder.WithOrigins("*")
                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials();
+                        .AllowAnyHeader();
                 });
             });
             services.AddControllers();
@@ -55,8 +54,6 @@ namespace AdoteUmPet.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "PetSavior.API v1"));
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 
