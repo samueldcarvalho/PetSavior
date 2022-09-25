@@ -2,14 +2,16 @@
 <header>
   <div class="header-main container-fluid">
     <div class="header-main-content container">
-      <h1>PetSavior</h1>
+      <a [routerLink]="['']">
+        <h1>PetSavior</h1>
+      </a>
       <nav>
           <a href="" class="nav-button">Find a pet</a>
           <a href="" class="nav-button">About us</a>
           <a href="" class="nav-button">Announce</a>
       </nav>
       <div class="header-main-end">
-        <button>LOGIN</button>
+        <button [routerLink]="['account/login']">LOGIN</button>
       </div>
     </div>
   </div>
