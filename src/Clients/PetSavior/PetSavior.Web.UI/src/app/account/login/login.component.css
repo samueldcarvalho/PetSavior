@@ -118,7 +118,6 @@ section.form-container form > span p{
   color: var(--color-font-01-light);
 }
 
-
 section.form-container form .form-footer{
   display: flex;
   flex-flow: column nowrap;
@@ -128,7 +127,7 @@ section.form-container form .form-footer{
 section.form-container form .form-footer > a{
   width: fit-content;
   align-self: flex-end;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
 section.form-container form .form-footer a {
@@ -136,7 +135,7 @@ section.form-container form .form-footer a {
 }
 
 section.form-container form .form-footer p {
-  margin-top: 5px;
+  margin-top: 15px;
   font-size: 14px;
   text-align: center;
 }
