@@ -1,0 +1,142 @@
+main {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+
+section:first-child {
+  width: 60%;
+}
+
+section:last-child {
+  width: 40%;
+}
+
+section.image-presentation {
+  z-index: -1;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  position: relative;
+}
+
+div.presentation-bg-image{
+  position: absolute;
+  background-image: url(../../../assets/xan-griffin-UCFgM_AojFg-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  filter: brightness(40%) grayscale(30%);
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+}
+
+div.presentation-bg-image::before{
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent 65%, rgba(0,0,0,0.6));
+  position: absolute;
+  z-index: 2;
+}
+
+section.image-presentation span{
+  position: absolute;
+}
+
+section.image-presentation span *{
+  text-align: center;
+}
+
+section.image-presentation span h1{
+  margin: 0;
+  font-size: 62px;
+  font-weight: bold;
+  font-family: "Caveat Brush";
+  color: var(--color-primary-main);
+}
+
+section.image-presentation span h2{
+  font-size: large;
+  font-weight: normal;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  section.image-presentation{
+    display: none;
+  }
+
+  section.form-container{
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1000px){
+  section.form-container{
+    width: 70%;
+  }
+}
+
+section.form-container{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.form-container form {
+  min-width: 350px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+section.form-container form h2{
+  text-align: center;
+  font-weight: bolder;
+  font-size: 32px;
+  margin: 0;
+}
+
+section.form-container form > span {
+  padding-bottom: 25px;
+}
+
+section.form-container form > span p{
+  margin: 0;
+  font-weight: 500;
+  color: var(--color-font-01-light);
+}
+
+
+section.form-container form .form-footer{
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+
+section.form-container form .form-footer > a{
+  width: fit-content;
+  align-self: flex-end;
+  padding-bottom: 15px;
+}
+
+section.form-container form .form-footer a {
+  font-size: 14px;
+}
+
+section.form-container form .form-footer p {
+  margin-top: 5px;
+  font-size: 14px;
+  text-align: center;
+}

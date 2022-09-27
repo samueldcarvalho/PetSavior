@@ -13,6 +13,10 @@
 
   --outside-border-radius: 24px;
   --inside-border-radius: 12px;
+
+  --color-font-01: #4D4D4D;
+  --color-font-01-light: #777777;
+  --color-font-02: #D0D0D0;
 }
 
 *{
@@ -21,10 +25,20 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Archivo";
+  color: var(--color-font-01);
 }
 
-a{
+a, input{
   text-decoration: none;
+}
+
+input{
+  border: none;
+}
+
+input:focus{
+  border: none;
+  outline: none;
 }
 
 body{
@@ -38,4 +52,46 @@ body{
   border-radius: var(--outside-border-radius);
   box-shadow: 0 12px 15px rgba(0,0,0,0.1);
   overflow: hidden;
+}
+
+
+label.form-field p{
+  font-size: 15px;
+  font-weight: bold;
+}
+
+input.text {
+  border-bottom: solid 1px var(--color-font-02);
+  padding: 5px 15px;
+  font-size: 14px;
+  color: var(--color-font-01-light);
+}
+
+.button-main-action {
+  border-radius: 24px;
+  padding: 10px;
+  background: var(--color-primary-main);
+  color: black;
+  font-weight: bolder;
+  transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.button-main-action:hover{
+  background: var(--color-primary-darker);
+}
+
+.form-field{
+  width: 100%;
+}
+
+.form-field p{
+  margin: 0;
+}
+
+.form-field input{
+  width: 100%;
+}
+
+.form-field{
+  padding-bottom: 22px;
 }
