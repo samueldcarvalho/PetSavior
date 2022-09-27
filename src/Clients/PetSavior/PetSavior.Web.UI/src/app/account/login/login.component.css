@@ -6,8 +6,12 @@ main {
 }
 
 
-section {
-  width: 50%;
+section:first-child {
+  width: 60%;
+}
+
+section:last-child {
+  width: 40%;
 }
 
 section.image-presentation {
@@ -69,11 +73,70 @@ section.image-presentation span h2{
   section.image-presentation{
     display: none;
   }
+
+  section.form-container{
+    width: 100%;
+    height: 100vh;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1000px){
+  section.form-container{
+    width: 70%;
+  }
 }
 
 section.form-container{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.form-container form {
+  min-width: 350px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+}
+
+section.form-container form h2{
+  text-align: center;
+  font-weight: bolder;
+  font-size: 32px;
+  margin: 0;
+}
+
+section.form-container form > span {
+  padding-bottom: 25px;
+}
+
+section.form-container form > span p{
+  margin: 0;
+  font-weight: 500;
+  color: var(--color-font-01-light);
+}
+
+
+section.form-container form .form-footer{
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+
+section.form-container form .form-footer > a{
+  width: fit-content;
+  align-self: flex-end;
+  padding-bottom: 15px;
+}
+
+section.form-container form .form-footer a {
+  font-size: 14px;
+}
+
+section.form-container form .form-footer p {
+  margin-top: 5px;
+  font-size: 14px;
+  text-align: center;
 }
