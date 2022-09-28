@@ -1,10 +1,19 @@
+@keyframes FormLoad {
+  from{
+    transform: translateY(20px);
+    opacity: 0;
+  }to{
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+}
+
 main {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: stretch;
 }
-
 
 section:first-child {
   width: 60%;
@@ -31,7 +40,7 @@ div.presentation-bg-image{
   background-image: url(../../../assets/xan-griffin-UCFgM_AojFg-unsplash.jpg);
   background-size: cover;
   background-position: center;
-  filter: brightness(40%) grayscale(30%);
+  filter: brightness(50%) grayscale(90%);
   height: 100%;
   width: 100%;
   z-index: 0;
@@ -99,6 +108,8 @@ section.form-container form {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+
+  animation: FormLoad 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
 section.form-container form h2{
@@ -114,10 +125,10 @@ section.form-container form > span {
 
 section.form-container form > span p{
   margin: 0;
-  font-weight: 500;
+  font-size: 14px;
   color: var(--color-font-01-light);
+  text-align: center;
 }
-
 
 section.form-container form .form-footer{
   display: flex;
@@ -128,7 +139,7 @@ section.form-container form .form-footer{
 section.form-container form .form-footer > a{
   width: fit-content;
   align-self: flex-end;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
 }
 
 section.form-container form .form-footer a {
@@ -136,7 +147,7 @@ section.form-container form .form-footer a {
 }
 
 section.form-container form .form-footer p {
-  margin-top: 5px;
+  margin-top: 15px;
   font-size: 14px;
   text-align: center;
 }
