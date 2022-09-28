@@ -60,14 +60,15 @@ label.form-field p{
 }
 
 input.text {
-  border-bottom: solid 1px var(--color-font-02);
-  padding: 5px 15px;
+  border: solid 1px var(--color-font-02);
+  border-radius: 6px;
+  padding: 10px 15px;
   font-size: 14px;
   color: var(--color-font-01-light);
 }
 
 .button-main-action {
-  border-radius: 24px;
+  border-radius: 6px;
   padding: 10px;
   background: var(--color-primary-main);
   color: black;
