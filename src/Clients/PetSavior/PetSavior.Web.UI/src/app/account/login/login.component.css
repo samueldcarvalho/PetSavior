@@ -31,7 +31,7 @@ div.presentation-bg-image{
   background-image: url(../../../assets/xan-griffin-UCFgM_AojFg-unsplash.jpg);
   background-size: cover;
   background-position: center;
-  filter: brightness(40%) grayscale(30%);
+  filter: brightness(50%) grayscale(90%);
   height: 100%;
   width: 100%;
   z-index: 0;
@@ -114,8 +114,9 @@ section.form-container form > span {
 
 section.form-container form > span p{
   margin: 0;
-  font-weight: 500;
+  font-size: 14px;
   color: var(--color-font-01-light);
+  text-align: center;
 }
 
 section.form-container form .form-footer{
