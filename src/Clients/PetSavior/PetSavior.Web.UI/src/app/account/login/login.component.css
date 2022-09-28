@@ -1,10 +1,19 @@
+@keyframes FormLoad {
+  from{
+    transform: translateY(20px);
+    opacity: 0;
+  }to{
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+}
+
 main {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: stretch;
 }
-
 
 section:first-child {
   width: 60%;
@@ -99,6 +108,8 @@ section.form-container form {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+
+  animation: FormLoad 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
 section.form-container form h2{
