@@ -9,6 +9,7 @@ import { AccountComponent } from './account.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountService } from './services/account.service';
+import { CustomFormsModule } from 'ngx-custom-validators';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent, AccountComponent],
@@ -19,7 +20,8 @@ import { AccountService } from './services/account.service';
     AccountRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CustomFormsModule,
   ],
   exports: [RegisterComponent, LoginComponent],
 })

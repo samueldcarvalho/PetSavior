@@ -1,16 +1,16 @@
 import { FormGroup } from "@angular/forms";
 
-export class GenericFormValidation {
+export class GenericFormValidator {
   constructor(private validationMessages: ValidationMessages) { }
 
-  validateMessages(container: FormGroup): { [key: string]: string}{
+  generateErrors(container: FormGroup): { [key: string]: string}{
     let messages: any = {};
     for(let controlKey in container.controls){
       if(container.controls.hasOwnProperty(controlKey)){
         let c = container.controls[controlKey];
 
         if(c instanceof FormGroup){
-          let childMessages = this.validateMessages(c);
+          let childMessages = this.generateErrors(c);
           Object.assign(messages, childMessages);
         }else{
           if(this.validationMessages[controlKey]){
