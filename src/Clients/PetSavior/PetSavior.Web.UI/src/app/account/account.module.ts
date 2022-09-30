@@ -8,9 +8,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountComponent } from './account.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AccountService } from './services/account.service';
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent, AccountComponent],
+  providers: [AccountService],
   imports: [
     CommonModule,
     RouterModule,

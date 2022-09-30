@@ -7,29 +7,38 @@
     </span>
     </section>
     <section class="form-container">
-      <form action="">
+      <form [formGroup]="registerForm" novalidate (ngSubmit)="registerUser()" #formDir="ngForm">
         <span>
           <h2>Register now</h2>
           <p>Complete your account</p>
         </span>
         <label class="form-field">
           <p>Name</p>
-          <input class="text" type="text">
+          <input class="text" type="text" formControlName="name">
+          <span class="validation-error" *ngIf="name().errors!['required'] && name().dirty">
+            <p>Name is required</p>
+          </span>
+          <span class="validation-error" *ngIf="name().errors!['minLength'] && name().dirty">
+            <p>The minimum length is 5</p>
+          </span>
         </label>
         <label class="form-field">
           <p>Email</p>
-          <input class="text" type="email">
+          <input class="text" type="email" formControlName="email">
+          <span class="validation-error" *ngIf="email().errors!['required'] && email().dirty">
+            <p>Email is required</p>
+          </span>
         </label>
         <label class="form-field">
           <p>Password</p>
-          <input class="text" type="password">
+          <input class="text" type="password" formControlName="password">
         </label>
         <label class="form-field">
           <p>Retype password</p>
-          <input class="text" type="password">
+          <input class="text" type="password" formControlName="repeatPassword">
         </label>
         <div class="form-footer">
-          <input class="button-main-action" type="submit" value="REGISTER">
+          <input class="button-main-action" type="submit" value="REGISTER" [disabled]="!registerForm.valid || !registerForm.dirty">
           <span>
             <p>Already have an account? <a [routerLink]="['../login']">Sign in!</a></p>
           </span>

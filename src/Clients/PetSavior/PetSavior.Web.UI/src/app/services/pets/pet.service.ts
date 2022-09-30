@@ -1,4 +1,4 @@
-import { Pet } from './../../models/pet.model';
+import { Pet } from 'src/app/models/pets/pet.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { Observable } from 'rxjs';
