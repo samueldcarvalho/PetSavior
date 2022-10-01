@@ -1,6 +1,5 @@
 ﻿using AdoteUmPet.Application.Commands.Pets;
 using AdoteUmPet.Application.Models.InputModels;
-using AdoteUmPet.Application.Models.ViewModels;
 using AdoteUmPet.Application.Queries.Pets;
 using AdoteUmPet.Core.CQRS;
 using AdoteUmPet.Core.CQRS.Mediator;
@@ -10,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using PetSavior.Application.Models.ViewModels.Pets;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
