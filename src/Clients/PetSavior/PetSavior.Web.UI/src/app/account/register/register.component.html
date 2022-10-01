@@ -15,30 +15,37 @@
         <label class="form-field">
           <p>Name</p>
           <input class="text" type="text" formControlName="name">
-          <span class="validation-error" *ngIf="name().errors!['required'] && name().dirty">
-            <p>Name is required</p>
-          </span>
-          <span class="validation-error" *ngIf="name().errors!['minLength'] && name().dirty">
-            <p>The minimum length is 5</p>
+          <span class="validation-error">
+            <p *ngIf="name().errors?.['required'] && name().dirty">Name is required</p>
+            <p *ngIf="name().errors?.['minlength'] && name().dirty">Name must have minimum 4 characters</p>
           </span>
         </label>
         <label class="form-field">
           <p>Email</p>
           <input class="text" type="email" formControlName="email">
-          <span class="validation-error" *ngIf="email().errors!['required'] && email().dirty">
-            <p>Email is required</p>
+         <span class="validation-error">
+            <p *ngIf="email().errors?.['required'] && email().dirty">Email is required</p>
+            <p *ngIf="email().errors?.['email'] && email().dirty">Invalid email</p>
           </span>
         </label>
         <label class="form-field">
           <p>Password</p>
           <input class="text" type="password" formControlName="password">
+          <span class="validation-error">
+            <p *ngIf="password().errors?.['required'] && password().dirty">Password is required</p>
+            <p *ngIf="password().errors?.['minlength'] && password().dirty">Password must have minimum 6 characters</p>
+          </span>
         </label>
         <label class="form-field">
           <p>Retype password</p>
           <input class="text" type="password" formControlName="repeatPassword">
+          <span class="validation-error">
+            <p *ngIf="!repeatPassword().errors?.['required'] && repeatPassword().value != password().value && password().dirty && repeatPassword().dirty">Password don't match</p>
+            <p *ngIf="repeatPassword().errors?.['required'] && repeatPassword().dirty">Required</p>
+          </span>
         </label>
         <div class="form-footer">
-          <input class="button-main-action" type="submit" value="REGISTER" [disabled]="!registerForm.valid || !registerForm.dirty">
+          <input class="button-main-action" type="submit" value="REGISTER">
           <span>
             <p>Already have an account? <a [routerLink]="['../login']">Sign in!</a></p>
           </span>
