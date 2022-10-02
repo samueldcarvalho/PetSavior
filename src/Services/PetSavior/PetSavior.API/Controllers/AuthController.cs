@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using PetSavior.Application.Models.ViewModels.Users;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace AdoteUmPet.API.Controllers
         /// <param name="registerInput"></param>
         /// <returns></returns>
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterUserInputModel registerInput)
+        public async Task<ActionResult<UserLoginViewModel>> Register([FromBody] RegisterUserInputModel registerInput)
         {
             User user = new User(registerInput.Name, registerInput.Email);
 
@@ -52,7 +53,9 @@ namespace AdoteUmPet.API.Controllers
 
             await _signInManager.SignInAsync(user, false);
 
-            return StatusCode(StatusCodes.Status201Created, await CreateJWT(user.Email));
+            UserLoginViewModel loginModel = new UserLoginViewModel(await CreateJWT(user.Email), user.Email, user.Name, user.Id);
+
+            return StatusCode(StatusCodes.Status201Created, loginModel);
         }
 
         /// <summary>
@@ -61,16 +64,26 @@ namespace AdoteUmPet.API.Controllers
         /// <param name="loginInput"></param>
         /// <returns></returns>
         [HttpPost("login")]
-        public async Task<ActionResult> Login([FromBody] LoginUserInputModel loginInput)
+        public async Task<ActionResult<UserLoginViewModel>> Login([FromBody] LoginUserInputModel loginInput)
         {
             SignInResult loginResult = await _signInManager.PasswordSignInAsync(loginInput.Email, loginInput.Password, false, false);
 
             if (!loginResult.Succeeded)
                 return BadRequest("Invalid email or password");
 
-            return Ok(await CreateJWT(loginInput.Email));
+            User user = _signInManager.UserManager.Users
+                .FirstOrDefault(p => p.Email == loginInput.Email);
+
+            UserLoginViewModel loginModel = new UserLoginViewModel(await CreateJWT(loginInput.Email), user.Email, user.Name, user.Id);
+
+            return Ok(loginModel);
         }
 
+        /// <summary>
+        /// Criação de JWT Token
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
         private async Task<string> CreateJWT(string email)
         {
             User user = await _userManager.FindByEmailAsync(email);

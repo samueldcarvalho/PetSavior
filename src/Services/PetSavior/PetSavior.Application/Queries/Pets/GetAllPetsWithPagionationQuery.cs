@@ -1,5 +1,5 @@
-﻿using AdoteUmPet.Application.Models.ViewModels;
-using AdoteUmPet.Core.CQRS.Queries;
+﻿using AdoteUmPet.Core.CQRS.Queries;
+using PetSavior.Application.Models.ViewModels.Pets;
 using System;
 using System.Collections.Generic;
 using System.Linq;

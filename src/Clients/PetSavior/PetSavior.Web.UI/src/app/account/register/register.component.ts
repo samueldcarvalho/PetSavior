@@ -1,9 +1,15 @@
+import { Observable } from 'rxjs';
 import { AccountService } from './../services/account.service';
 import { NewUserDTO } from './../../models/users/DTOs/new-user.model';
-import { FormGroup, FormBuilder, Validators, FormControl, ValidatorFn, FormControlName } from '@angular/forms';
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
-import { DisplayMessage, GenericFormValidator, ValidationMessages } from 'src/app/utils/generic-form-validation';
-import { fromEvent, merge, Observable } from 'rxjs';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +19,7 @@ import { fromEvent, merge, Observable } from 'rxjs';
 export class RegisterComponent implements OnInit, AfterViewInit {
   registerForm!: FormGroup;
   newUser!: NewUserDTO;
+  errors: any[] = [];
 
   constructor(
     private _accountService: AccountService,
@@ -31,14 +38,33 @@ export class RegisterComponent implements OnInit, AfterViewInit {
           Validators.maxLength(15),
         ],
       ],
-      repeatPassword: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(15),
-        ],
-      ],
+      repeatPassword: ['', [Validators.required]],
+    });
+  }
+
+  ngAfterViewInit(): void {}
+
+  registerUser() {
+    this.errors = [];
+
+    if (
+      (this.repeatPassword().value != this.password().value &&
+        this.password().dirty &&
+        this.repeatPassword().dirty) ||
+      !this.registerForm.valid
+    ) {
+      return;
+    }
+
+    this.newUser = Object.assign({}, this.newUser, this.registerForm.value);
+
+    this._accountService.register(this.newUser).subscribe({
+      next: (user) => {
+
+      },
+      error: (fail) => {
+        this.errors = fail.error.errors;
+      },
     });
   }
 
@@ -46,12 +72,4 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   email = () => this.registerForm.get('email')!;
   password = () => this.registerForm.get('password')!;
   repeatPassword = () => this.registerForm.get('repeatPassword')!;
-
-  ngAfterViewInit(): void {}
-
-  registerUser() {
-    console.log(this.registerForm.value);
-
-    this.newUser = Object.assign({}, this.newUser, this.registerForm.value);
-  }
 }

@@ -17,7 +17,7 @@ namespace AdoteUmPet.Application.Models.InputModels
         public string Password { get; set; }
         [Required]
         [Compare("Password")]
-        public string ConfirmPassword { get; set; }
+        public string RepeatPassword { get; set; }
 
     }
 }

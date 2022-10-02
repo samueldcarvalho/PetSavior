@@ -42,7 +42,13 @@ namespace AdoteUmPet.API.Configurations
                         ValidAudience = appSettings.AllowedHost,
                         ValidIssuer = appSettings.Emitter
                     };
-                });  
+                });
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            });
 
             return services;
         }

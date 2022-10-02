@@ -1,4 +1,4 @@
-﻿namespace AdoteUmPet.Application.Models.ViewModels
+﻿namespace PetSavior.Application.Models.ViewModels.Pets
 {
     public class PetVaccineViewModel
     {

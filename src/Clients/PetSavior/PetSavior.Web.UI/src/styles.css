@@ -15,7 +15,7 @@
 
   --color-font-01: #4D4D4D;
   --color-font-01-light: #777777;
-  --color-font-02: #D0D0D0;
+  --color-font-02: #e4e4e4;
 }
 
 *{
@@ -105,13 +105,27 @@ span.validation-error p{
   font-size: 12px;
   color: red;
   padding-left: 5px;
-  animation: ValidationErrorLoad 0.2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
+  animation: ValidationErrorLoad 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 @keyframes ValidationErrorLoad {
   from{
-    margin-bottom: -15px;
+    margin-bottom: -8px;
   }to{
     margin-bottom: 0px;
   }
+}
+
+div.form-errors-container{
+  width: 100%;
+  border-radius: 8px;
+  margin-block: 15px;
+  padding-inline: 15px;
+  background-color: rgb(255, 202, 202);
+}
+
+div.form-errors-container li {
+  color: rgb(151, 35, 35);
+  font-size: 13px;
+  margin-block: 2px;
 }
