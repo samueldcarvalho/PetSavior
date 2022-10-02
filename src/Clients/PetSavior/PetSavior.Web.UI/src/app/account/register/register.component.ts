@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { AccountService } from './../services/account.service';
 import { NewUserDTO } from './../../models/users/DTOs/new-user.model';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
@@ -37,7 +38,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {}
 
-  registerUser() {
+  registerUser(){
     if (
       (this.repeatPassword().value != this.password().value &&
       this.password().dirty &&
@@ -47,10 +48,14 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       return;
     }
 
-
-      console.log(this.registerForm.value);
-
     this.newUser = Object.assign({}, this.newUser, this.registerForm.value);
+
+    this._accountService.register(this.newUser)
+      .subscribe({
+        next: (user) => {
+          console.log(user);
+        }
+      });
   }
 
   name = () => this.registerForm.get('name')!;
