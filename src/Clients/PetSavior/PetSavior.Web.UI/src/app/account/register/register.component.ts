@@ -1,7 +1,14 @@
 import { Observable } from 'rxjs';
 import { AccountService } from './../services/account.service';
 import { NewUserDTO } from './../../models/users/DTOs/new-user.model';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ValidatorFn,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 
 @Component({
@@ -12,6 +19,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit, AfterViewInit {
   registerForm!: FormGroup;
   newUser!: NewUserDTO;
+  errors: any[] = [];
 
   constructor(
     private _accountService: AccountService,
@@ -19,43 +27,45 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.registerForm = this._formBuilder.group(
-      {
-        name: ['', [Validators.required, Validators.minLength(4)]],
-        email: ['', [Validators.required, Validators.email]],
-        password: [
-          '',
-          [
-            Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(15),
-          ],
+    this.registerForm = this._formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(15),
         ],
-        repeatPassword: ['', [Validators.required]],
-      }
-    );
+      ],
+      repeatPassword: ['', [Validators.required]],
+    });
   }
 
   ngAfterViewInit(): void {}
 
-  registerUser(){
+  registerUser() {
+    this.errors = [];
+
     if (
       (this.repeatPassword().value != this.password().value &&
-      this.password().dirty &&
-      this.repeatPassword().dirty) ||
+        this.password().dirty &&
+        this.repeatPassword().dirty) ||
       !this.registerForm.valid
-    ){
+    ) {
       return;
     }
 
     this.newUser = Object.assign({}, this.newUser, this.registerForm.value);
 
-    this._accountService.register(this.newUser)
-      .subscribe({
-        next: (user) => {
-          console.log(user);
-        }
-      });
+    this._accountService.register(this.newUser).subscribe({
+      next: (user) => {
+
+      },
+      error: (fail) => {
+        this.errors = fail.error.errors;
+      },
+    });
   }
 
   name = () => this.registerForm.get('name')!;

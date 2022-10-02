@@ -18,11 +18,19 @@ export abstract class BaseService {
     if(response instanceof HttpErrorResponse)
     {
       if(response.statusText === "Unknown Error"){
-        customError.push("Unknown error");
-        response.error.errors = customError;
+        customError.push("Unable to communicate with the API");
       }
+
+      if(response.error.length > 0){
+        for (let error of response.error){
+          customError.push(error.description);
+        }
+      }
+
+      response.error.errors = customError;
     }
+
     console.error(response);
-     return throwError(response);
+    return throwError(response);
   }
 }

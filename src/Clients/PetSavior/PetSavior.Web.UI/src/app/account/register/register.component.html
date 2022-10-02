@@ -12,6 +12,9 @@
           <h2>Register now</h2>
           <p>Complete your account</p>
         </span>
+        <div class="form-errors-container">
+          <li *ngFor="let error of errors">{{error}}</li>
+        </div>
         <label class="form-field">
           <p>Name</p>
           <input class="text" type="text" formControlName="name">
