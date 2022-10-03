@@ -52,18 +52,20 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         this.password().dirty &&
         this.repeatPassword().dirty) ||
       !this.registerForm.valid
-    ) {
+    )
       return;
-    }
 
     this.newUser = Object.assign({}, this.newUser, this.registerForm.value);
 
     this._accountService.register(this.newUser).subscribe({
-      next: (user) => {
-
+      next: (data) => {
+        this.registerForm.reset();
+        this._accountService.localStorage.saveLocalStorageUserToken(data.user, data.token);
       },
       error: (fail) => {
         this.errors = fail.error.errors;
+        this.password().reset();
+        this.repeatPassword().reset();
       },
     });
   }
