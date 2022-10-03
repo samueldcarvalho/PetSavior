@@ -1,30 +1,30 @@
 import { LocalStorageUtils } from './../../utils/local-storage';
 import { HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { throwError } from "rxjs";
+import { environment } from 'src/environments/environment';
 
 export abstract class BaseService {
-  protected UrlService: string = "https://localhost:5001/api/v1";
+  protected UrlService: string = environment.BASEURL_API;
   public localStorage = new LocalStorageUtils();
 
-  protected getHeaderJson(){
+  protected getHeaderJson() {
     return {
       headers: new HttpHeaders({
-        'content-type': 'application/json'
-      })
-    }
+        'content-type': 'application/json',
+      }),
+    };
   }
 
   protected serviceError(response: Response | any) {
     let customError: string[] = [];
 
-    if(response instanceof HttpErrorResponse)
-    {
-      if(response.statusText === "Unknown Error"){
-        customError.push("Unable to communicate with the API");
+    if (response instanceof HttpErrorResponse) {
+      if (response.statusText === 'Unknown Error') {
+        customError.push('Unable to communicate with the API');
       }
 
-      if(response.error.length > 0){
-        for (let error of response.error){
+      if (response.error.length > 0) {
+        for (let error of response.error) {
           customError.push(error.description);
         }
       }

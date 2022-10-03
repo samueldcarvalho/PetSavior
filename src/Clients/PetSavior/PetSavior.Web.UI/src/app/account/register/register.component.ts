@@ -10,6 +10,7 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
   constructor(
     private _accountService: AccountService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +63,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       next: (data) => {
         this.registerForm.reset();
         this._accountService.localStorage.saveLocalStorageUserToken(data.user, data.token);
+        this._router.navigate(["/home"]);
       },
       error: (fail) => {
         this.errors = fail.error.errors;
