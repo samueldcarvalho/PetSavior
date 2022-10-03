@@ -21,3 +21,21 @@ div.header-main-end button:hover{
   box-shadow: 0 7px 7px 2px rgba(0, 0, 0, 0.1);
   cursor: pointer;
 }
+
+div.header-main-end-buttons-container button:first-child{
+  border-radius: 14px 5px 5px 14px;
+  margin-right: 5px;
+}
+
+div.header-main-end-buttons-container button.profile-exit {
+  background-color: var(--color-danger-main);
+  border-color: var(--color-danger-main);
+  border-radius: 5px 14px 14px 5px;
+  padding-inline: 5px;
+  color: white;
+}
+
+div.header-main-end-buttons-container button.profile-exit:hover {
+  background-color: var(--color-danger-darker);
+  border-color: var(--color-danger-darker);
+}

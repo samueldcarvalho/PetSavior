@@ -26,6 +26,6 @@ export class LocalStorageUtils {
   }
 
   public getToken(): string {
-    return JSON.parse(localStorage.getItem(this._tokenName)!);
+    return localStorage.getItem(this._tokenName)!;
   }
 }

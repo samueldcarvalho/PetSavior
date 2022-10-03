@@ -11,6 +11,7 @@ import { User } from 'src/app/models/users/DTOs/user.model';
 export class LoginMenuComponent {
   user: User | null = null;
   token: string | null = null;
+  userFirstName: string = "";
   localStorageUtils: LocalStorageUtils = new LocalStorageUtils();
 
   constructor(private router: Router) { }
@@ -18,6 +19,9 @@ export class LoginMenuComponent {
   verifyUserIsLogged(): boolean{
     this.user = this.localStorageUtils.getUser();
     this.token = this.localStorageUtils.getToken();
+
+    if(this.user !== null)
+      this.userFirstName = `Hello, ${this.user.name.split(' ')[0]}!`;
 
     return this.token !== null;
   }

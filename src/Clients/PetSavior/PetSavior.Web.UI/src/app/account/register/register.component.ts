@@ -1,3 +1,4 @@
+import { LocalStorageUtils } from './../../utils/local-storage';
 import { Observable } from 'rxjs';
 import { AccountService } from './../services/account.service';
 import { NewUserDTO } from './../../models/users/DTOs/new-user.model';
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   registerForm!: FormGroup;
   newUser!: NewUserDTO;
   errors: any[] = [];
-
+  localStorageUtils = new LocalStorageUtils();
   constructor(
     private _accountService: AccountService,
     private _formBuilder: FormBuilder,
@@ -29,6 +30,12 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    const token = this.localStorageUtils.getToken();
+
+    if (token != null) {
+      this._router.navigate(['/home']);
+    }
+
     this.registerForm = this._formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
@@ -62,8 +69,11 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this._accountService.register(this.newUser).subscribe({
       next: (data) => {
         this.registerForm.reset();
-        this._accountService.localStorage.saveLocalStorageUserToken(data.user, data.token);
-        this._router.navigate(["/home"]);
+        this._accountService.localStorage.saveLocalStorageUserToken(
+          data.user,
+          data.token
+        );
+        this._router.navigate(['/home']);
       },
       error: (fail) => {
         this.errors = fail.error.errors;
