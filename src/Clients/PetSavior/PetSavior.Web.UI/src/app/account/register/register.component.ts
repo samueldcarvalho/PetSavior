@@ -1,17 +1,14 @@
 import { LocalStorageUtils } from './../../utils/local-storage';
-import { Observable } from 'rxjs';
 import { AccountService } from './../services/account.service';
 import { NewUserDTO } from './../../models/users/DTOs/new-user.model';
 import {
   FormGroup,
   FormBuilder,
   Validators,
-  ValidatorFn,
-  AbstractControl,
-  ValidationErrors,
 } from '@angular/forms';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -23,11 +20,15 @@ export class RegisterComponent implements OnInit, AfterViewInit {
   newUser!: NewUserDTO;
   errors: any[] = [];
   localStorageUtils = new LocalStorageUtils();
+
+
   constructor(
     private _accountService: AccountService,
     private _formBuilder: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private _toastr: ToastrService
   ) {}
+
 
   ngOnInit(): void {
     const token = this.localStorageUtils.getToken();
@@ -69,11 +70,18 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     this._accountService.register(this.newUser).subscribe({
       next: (data) => {
         this.registerForm.reset();
+
         this._accountService.localStorage.saveLocalStorageUserToken(
           data.user,
           data.token
         );
-        this._router.navigate(['/home']);
+
+        const toast = this._toastr.success("Success", "User was been created");
+
+        if(toast)
+          toast.onHidden.subscribe(() => {
+            this._router.navigate(['/home']);
+          });
       },
       error: (fail) => {
         this.errors = fail.error.errors;

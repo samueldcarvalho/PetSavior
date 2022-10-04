@@ -133,3 +133,15 @@ div.form-errors-container li {
   font-size: 13px;
   margin-block: 2px;
 }
+
+
+.toast-container *{
+  color: white;
+}
+
+.toast-error {
+  background-color: var(--color-danger-main) !important;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

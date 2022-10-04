@@ -28,6 +28,6 @@ export class LoginMenuComponent {
 
   logout(){
     this.localStorageUtils.clearLocalStorageUserToken();
-    this.router.navigate(["/home"]);
+    this.router.navigate(["/account/login"]);
   }
 }
