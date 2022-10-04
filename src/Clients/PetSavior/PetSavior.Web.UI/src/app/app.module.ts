@@ -4,10 +4,17 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavigationModule } from './navigation/navigation.module';
 import { AppRoutingModule } from './app-routing.module';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule, NavigationModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    NavigationModule,
+    AppRoutingModule,
+    ToastrModule.forRoot(),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
