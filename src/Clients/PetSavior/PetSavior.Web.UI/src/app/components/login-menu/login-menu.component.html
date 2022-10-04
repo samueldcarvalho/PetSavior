@@ -1,0 +1,7 @@
+<div [ngSwitch]="verifyUserIsLogged()" class="header-main-end">
+  <button *ngSwitchCase="false" [routerLink]="['../account/login']">LOGIN</button>
+  <div *ngSwitchCase="true" class="header-main-end-buttons-container">
+    <button class="profile-name">{{userFirstName}}</button>
+    <button class="profile-exit" (click)="logout()">EXIT</button>
+  </div>
+</div>
