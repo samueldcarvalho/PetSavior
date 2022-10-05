@@ -12,7 +12,7 @@ export class AccountService extends BaseService {
   }
 
   register(newUser: NewUserDTO): Observable<LoginUser> {
-    let response = this._httpClient
+    const response = this._httpClient
       .post(`${this.UrlService}/Auth/register`, newUser, this.getHeaderJson())
       .pipe(
         map((result: any) => {
@@ -23,5 +23,15 @@ export class AccountService extends BaseService {
     return response;
   }
 
-  login(email: string, password: string) {}
+  login(email: string, password: string): Observable<LoginUser> {
+    const response = this._httpClient
+      .post(`${this.UrlService}/Auth/login`, {email, password}, this.getHeaderJson())
+      .pipe(
+        map((result: any) => {
+          return result as LoginUser
+        }),
+        catchError(this.serviceError));
+
+    return response;
+  }
 }
