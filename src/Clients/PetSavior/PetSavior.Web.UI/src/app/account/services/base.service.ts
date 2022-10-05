@@ -1,6 +1,6 @@
 import { LocalStorageUtils } from './../../utils/local-storage';
-import { HttpErrorResponse, HttpHeaders } from "@angular/common/http";
-import { throwError } from "rxjs";
+import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 export abstract class BaseService {
@@ -23,13 +23,15 @@ export abstract class BaseService {
         customError.push('Unable to communicate with the API');
       }
 
-      if (response.error.length > 0) {
+      if (typeof response.error === 'string') {
+        customError.push(response.error);
+      }else if (response.error.length > 0) {
         for (let error of response.error) {
-          customError.push(error.description);
+          customError.push(error);
         }
-      }
 
-      response.error.errors = customError;
+        response.error.errors = customError;
+      }
     }
 
     console.error(response);

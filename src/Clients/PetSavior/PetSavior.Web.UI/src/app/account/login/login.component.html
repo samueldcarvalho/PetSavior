@@ -7,18 +7,25 @@
     </span>
     </section>
     <section class="form-container">
-      <form action="">
+      <form [formGroup]="loginForm" novalidate (ngSubmit)="login()" #formDir="ngForm">
         <span>
           <h2>Sign in</h2>
           <p>Free access to PetSavior</p>
         </span>
         <label class="form-field">
           <p>Email</p>
-          <input class="text" type="email">
+          <input class="text" type="email" formControlName="email">
+          <span class="validation-error">
+            <p *ngIf="email().errors?.['required'] && email().dirty">Email is required</p>
+            <p *ngIf="email().errors?.['email'] && email().dirty">Invalid email</p>
+          </span>
         </label>
         <label class="form-field">
           <p>Password</p>
-          <input class="text" type="password">
+          <input class="text" type="password" formControlName="password">
+          <span class="validation-error">
+            <p *ngIf="password().errors?.['required'] && password().dirty">Password is required</p>
+          </span>
         </label>
         <div class="form-footer">
           <a href="">Forgot password?</a>
