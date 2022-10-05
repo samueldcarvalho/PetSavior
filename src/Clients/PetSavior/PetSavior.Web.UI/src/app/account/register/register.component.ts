@@ -15,12 +15,11 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './register.component.html',
   styleUrls: ['../login/login.component.css'],
 })
-export class RegisterComponent implements OnInit, AfterViewInit {
+export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   newUser!: NewUserDTO;
   errors: any[] = [];
   localStorageUtils = new LocalStorageUtils();
-
 
   constructor(
     private _accountService: AccountService,
@@ -29,12 +28,12 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     private _toastr: ToastrService
   ) {}
 
-
   ngOnInit(): void {
     const token = this.localStorageUtils.getToken();
 
     if (token != null) {
       this._router.navigate(['/home']);
+      return;
     }
 
     this.registerForm = this._formBuilder.group({
@@ -51,8 +50,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
       repeatPassword: ['', [Validators.required]],
     });
   }
-
-  ngAfterViewInit(): void {}
 
   registerUser() {
     this.errors = [];
