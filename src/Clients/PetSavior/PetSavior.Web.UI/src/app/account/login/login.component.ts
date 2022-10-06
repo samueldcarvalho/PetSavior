@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   login(){
     if(!this.loginForm.valid){
-      this._toastr.error("Check the fields")
+      this._toastr.error("Check the fields.")
       return;
     }
 
