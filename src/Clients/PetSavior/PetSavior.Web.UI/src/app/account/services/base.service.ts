@@ -20,7 +20,7 @@ export abstract class BaseService {
 
     if (response instanceof HttpErrorResponse) {
       if (response.statusText === 'Unknown Error') {
-        customError.push('Unable to communicate with the API');
+        customError.push('Unable to estabilish communication with API');
       }
 
       if (typeof response.error === 'string') {
