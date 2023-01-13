@@ -1,5 +1,6 @@
 ﻿using AdoteUmPet.Domain.Pets;
 using PetSavior.Application.Models.ViewModels.Pets;
+using PetSavior.Domain.Pets.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace AdoteUmPet.Application.Extensions
                 Pedigree = pet.Pedigree,
                 UserId = pet.UserId,
                 Weight = pet.Weight,
-                Sex = Enum.GetName(pet.Sex),
+                Sex = Enum.GetName(typeof(SexEnum), pet.Sex),
                 Breed = pet.Breed.ToViewModel(),
                 Temperaments = pet.Temperaments.Select(t => t.ToViewModel()),
                 Vaccines = pet.Vaccines.Select(v => v.ToViewModel())
