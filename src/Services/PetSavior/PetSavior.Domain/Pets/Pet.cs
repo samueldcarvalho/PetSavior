@@ -21,6 +21,7 @@ namespace AdoteUmPet.Domain.Pets
         public int UserId { get; private set; }
         public User User { get; private set; }
         public bool Pedigree { get; private set; }
+
         public ICollection<PetVaccine> Vaccines { get; private set; } = new List<PetVaccine>();
         public ICollection<PetTemperament> Temperaments { get; private set; } = new List<PetTemperament>();
         public ICollection<Ad> Ads { get; private set; } = new List<Ad>();
